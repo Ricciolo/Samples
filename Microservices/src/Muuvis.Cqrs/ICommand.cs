@@ -1,0 +1,8 @@
+﻿using System;
+
+namespace Muuvis.Cqrs
+{
+    public interface ICommand : IMessage
+    {
+    }
+}

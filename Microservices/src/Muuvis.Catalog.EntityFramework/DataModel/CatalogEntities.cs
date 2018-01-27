@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Muuvis.Catalog.DomainModel;
+
+namespace Muuvis.Catalog.EntityFramework.DataModel
+{
+    internal class CatalogEntities : DbContext
+    {
+        public CatalogEntities(DbContextOptions options) : base(options)
+        {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            optionsBuilder.ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.HasDefaultSchema("Catalog");
+            modelBuilder.Entity<Movie>().HasKey(m => m.Id);
+            modelBuilder.Entity<Movie>().Property(m => m.Title).HasMaxLength(255);
+        }
+
+        public DbSet<Movie> Movies { get; set; }
+    }
+}

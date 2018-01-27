@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  muuvis.catalog.api:
+    image: muuvis.catalog.api
+    build:
+      context: .
+      dockerfile: Muuvis.Catalog.Api\Dockerfile
+    depends_on:
+      - db
+  db:
+    image: "microsoft/mssql-server-linux"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+  bus:
+    image: "rabbitmq:3-management"
