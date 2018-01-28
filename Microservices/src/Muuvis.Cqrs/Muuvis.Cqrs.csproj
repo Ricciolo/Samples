@@ -10,6 +10,7 @@
     <PackageReference Include="Rebus.RabbitMq" Version="4.3.0" />
     <PackageReference Include="Rebus.Serilog" Version="4.0.0" />
     <PackageReference Include="Rebus.ServiceProvider" Version="4.0.1" />
+    <PackageReference Include="Rebus.SqlServer" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Muuvis.Cqrs;
@@ -31,23 +34,54 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddTransient<IncludePrincipalClaimsStep>();
 
-            services.AddRebus((configure, provider) => configure
-                .Serialization(s => s.UseNewtonsoftJson())
-                .Options(o =>
-                {
-                    o.EnableSynchronousRequestReply(replyMaxAgeSeconds: 30);
-                    o.SetNumberOfWorkers(w);
-                    o.SetMaxParallelism(w);
-                    o.IncludePrincipalClaims(provider);
-                    o.SimpleRetryStrategy(maxDeliveryAttempts: 2, secondLevelRetriesEnabled: true);
-                })
-                .Logging(l => l.Serilog())
-                .Transport(configurer.ApplyActions)
-                .Routing(configurer.ApplyActions));
+            services.AddRebus((configure, provider) =>
+            {
+                string timeoutsConnectionString = provider.GetRequiredService<IConfiguration>().GetConnectionString("Timeouts");
+                EnsureDatabaseCreated(timeoutsConnectionString);
+
+                return configure
+                    .Serialization(s => s.UseNewtonsoftJson())
+                    .Options(o =>
+                    {
+                        o.EnableSynchronousRequestReply(replyMaxAgeSeconds: 30);
+                        o.SetNumberOfWorkers(w);
+                        o.SetMaxParallelism(w);
+                        o.IncludePrincipalClaims(provider);
+                        o.SimpleRetryStrategy(maxDeliveryAttempts: 1, secondLevelRetriesEnabled: true);
+                    })
+                    .Timeouts(t => t.StoreInSqlServer(timeoutsConnectionString, "MessageTimeouts"))
+                    .Logging(l => l.Serilog())
+                    .Transport(configurer.ApplyActions)
+                    .Routing(configurer.ApplyActions);
+            });
 
             services.AddSingleton<IHostedService, RebusHostedService>(r => new RebusHostedService(r, configurer));
 
             return services;
+        }
+
+        private static void EnsureDatabaseCreated(string connectionString)
+        {
+            var builder = new SqlConnectionStringBuilder(connectionString);
+            string databaseName = builder.InitialCatalog;
+            builder.InitialCatalog = "master";
+            using (var connection = new SqlConnection(builder.ConnectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = $@"IF (NOT EXISTS (SELECT name 
+                    FROM master.dbo.sysdatabases
+                    WHERE(name = @n))) BEGIN CREATE DATABASE [{databaseName}]; END";
+
+                    SqlParameter sqlParameter = command.CreateParameter();
+                    sqlParameter.ParameterName = "@n";
+                    sqlParameter.Value = databaseName;
+
+                    command.Parameters.Add(sqlParameter);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         private class RebusHostedService : IHostedService

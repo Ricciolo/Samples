@@ -4,16 +4,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Muuvis.Catalog.Cqrs.Events;
 using Muuvis.Common;
+using Muuvis.Cqrs;
 using Muuvis.DataAccessObject;
 using Muuvis.Repository;
 using Muuvis.Taste.Cqrs.Commands;
 using Muuvis.Taste.DomainModel;
+using Rebus;
 using Rebus.Bus;
 using Rebus.Handlers;
+using Rebus.Retry.Simple;
 
 namespace Muuvis.Taste.Cqrs.Handlers
 {
-    public class SuggestionHandlers : IHandleMessages<EvaluateSuggestionCommand>, IHandleMessages<MovieAddedEvent>
+    public class SuggestionHandlers : IHandleMessages<EvaluateSuggestionCommand>, IHandleMessages<MovieAddedEvent>, IHandleMessages<IFailed<EvaluateSuggestionCommand>>
     {
         private readonly ILogger<SuggestionHandlers> _logger;
         private readonly IBus _bus;
@@ -41,6 +44,11 @@ namespace Muuvis.Taste.Cqrs.Handlers
 
             _logger.LogInformation("Evaluating suggestion for {movieId}", message.MovieId);
 
+            if (Environment.TickCount % 2d == 0d)
+            {
+                throw new Exception("Random error");
+            }
+
             await _repository.AddAsync(new Suggestion(message.MovieId)
             {
                 Affinity = (float) Math.Round(new Random(Environment.TickCount).NextDouble(), 2)
@@ -52,6 +60,11 @@ namespace Muuvis.Taste.Cqrs.Handlers
             _logger.LogInformation("New movie {movieId} added", message.Id);
 
             await _bus.Send(new EvaluateSuggestionCommand {MovieId = message.Id});
+        }
+
+        public Task Handle(IFailed<EvaluateSuggestionCommand> message)
+        {
+            return _bus.ExponentialRetry(message, 3);
         }
     }
 
