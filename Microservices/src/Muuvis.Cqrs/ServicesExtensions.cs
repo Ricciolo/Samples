@@ -35,6 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .Serialization(s => s.UseNewtonsoftJson())
                 .Options(o =>
                 {
+                    o.EnableSynchronousRequestReply(replyMaxAgeSeconds: 30);
                     o.SetNumberOfWorkers(w);
                     o.SetMaxParallelism(w);
                     o.IncludePrincipalClaims(provider);
@@ -44,7 +45,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .Transport(configurer.ApplyActions)
                 .Routing(configurer.ApplyActions));
 
-            services.AddSingleton<IHostedService, RebusHostedService>();
+            services.AddSingleton<IHostedService, RebusHostedService>(r => new RebusHostedService(r, configurer));
 
             return services;
         }
@@ -52,17 +53,20 @@ namespace Microsoft.Extensions.DependencyInjection
         private class RebusHostedService : IHostedService
         {
             private readonly IServiceProvider _serviceProvider;
+            private readonly CqrsConfigurer _cqrsConfigurer;
 
-            public RebusHostedService(IServiceProvider serviceProvider)
+            public RebusHostedService(IServiceProvider serviceProvider, CqrsConfigurer cqrsConfigurer)
             {
                 _serviceProvider = serviceProvider;
+                _cqrsConfigurer = cqrsConfigurer;
             }
 
-            public Task StartAsync(CancellationToken cancellationToken)
+            public async Task StartAsync(CancellationToken cancellationToken)
             {
                 // Attiva il bus
-                _serviceProvider.GetRequiredService<IBus>();
-                return Task.CompletedTask;
+                var bus = _serviceProvider.GetRequiredService<IBus>();
+
+                await _cqrsConfigurer.ApplySubscriptionsAsync(bus);
             }
 
             public Task StopAsync(CancellationToken cancellationToken)

@@ -20,28 +20,28 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ServicesExtensions
     {
-        public static IServiceCollection AddEntityFrameworkRepositories(this IServiceCollection services, Action<DbContextOptionsBuilder> options, ServiceLifetime lifetime = ServiceLifetime.Scoped)
+        public static IServiceCollection AddCatalogEntityFrameworkRepositories(this IServiceCollection services, Action<DbContextOptionsBuilder> options, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
             services.AddDbContext<CatalogEntities>(options, lifetime);
-            services.AddSingleton<IHostedService, CatalogEntitiesHostedServices>();
+            services.AddSingleton<IHostedService, EntitiesHostedServices>();
 
             services.TryAddTransient<IRepository<Movie>, DbRepository<Movie, CatalogEntities>>();
 
             return services;
         }
 
-        public static IServiceCollection AddEntityFrameworkDataAccessObjects(this IServiceCollection services)
+        public static IServiceCollection AddCatalogEntityFrameworkDataAccessObjects(this IServiceCollection services)
         {
             services.TryAddTransient<IDataAccessObject<Muuvis.Catalog.ReadModel.Movie>, MovieDataAccessObject>();
 
             return services;
         }
 
-        private class CatalogEntitiesHostedServices : IHostedService
+        private class EntitiesHostedServices : IHostedService
         {
             private readonly IServiceProvider _serviceProvider;
 
-            public CatalogEntitiesHostedServices(IServiceProvider serviceProvider)
+            public EntitiesHostedServices(IServiceProvider serviceProvider)
             {
                 _serviceProvider = serviceProvider;
             }

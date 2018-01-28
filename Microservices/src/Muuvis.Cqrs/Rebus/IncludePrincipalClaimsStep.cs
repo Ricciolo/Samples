@@ -29,12 +29,15 @@ namespace Muuvis.Cqrs.Rebus
                 var userAccessor = scope.ServiceProvider.GetRequiredService<IUserAccessor>();
                 var message = context.Load<Message>();
 
-                var claims = message.Headers
-                    .Where(p => p.Key.StartsWith(Prefix))
-                    .Select(p => new Claim(p.Key.Substring(Prefix.Length), p.Value))
-                    .ToArray();                
+                if (message.Headers.ContainsKey(AuthenticationTypeKey))
+                {
+                    var claims = message.Headers
+                        .Where(p => p.Key.StartsWith(Prefix))
+                        .Select(p => new Claim(p.Key.Substring(Prefix.Length), p.Value))
+                        .ToArray();
 
-                userAccessor.User = new ClaimsPrincipal(new ClaimsIdentity(claims, message.Headers[AuthenticationTypeKey]));
+                    userAccessor.User = new ClaimsPrincipal(new ClaimsIdentity(claims, message.Headers[AuthenticationTypeKey]));
+                }
             }
 
             await next();

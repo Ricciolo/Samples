@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Muuvis.Catalog.DomainModel;
 using Muuvis.Cqrs;
-using Muuvis.Repository;
-using Rebus.Routing.Exceptions;
 
-namespace Muuvis.Catalog.Api
+namespace Muuvis.Taste.Api
 {
     public class Startup
     {
@@ -29,17 +20,16 @@ namespace Muuvis.Catalog.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddUser(c => c.GetService<IHttpContextAccessor>()?.HttpContext?.User);
-            services.AddCatalogEntityFrameworkRepositories(o => o.UseSqlServer(Configuration.GetConnectionString("Muuvis")));
-            services.AddCatalogEntityFrameworkDataAccessObjects();
+            services.AddTasteEntityFrameworkRepositories(o => o.UseSqlServer(Configuration.GetConnectionString("Muuvis")));
+            services.AddTasteEntityFrameworkDataAccessObjects();
 
             services.AddServiceBus(r => r
-                .AddCatalogQueue()
-                .AddCatalogCommandsRoute()
-                .AddCatalogEventsRoute()
-                .AddCatalogHandlers()
-                .CatalogSubscribe());
+                .AddTasteQueue()
+                .AddTasteCommandsRoute()
+                .AddTasteEventsRoute()
+                .AddTasteHandlers()
+                .TasteSubscribe());
 
             services.AddMvc();
         }

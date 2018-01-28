@@ -8,6 +8,15 @@ services:
       dockerfile: Muuvis.Catalog.Api\Dockerfile
     depends_on:
       - db
+      - bus
+  muuvis.taste.api:
+    image: muuvis.taste.api
+    build:
+      context: .
+      dockerfile: Muuvis.Taste.Api\Dockerfile
+    depends_on:
+      - db
+      - bus
   db:
     image: "microsoft/mssql-server-linux"
     environment:

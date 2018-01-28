@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Muuvis.Catalog.DomainModel;
+using Muuvis.Taste.DomainModel;
 
-namespace Muuvis.Catalog.EntityFramework.DataModel
+namespace Muuvis.Taste.EntityFramework.DataModel
 {
-    internal class CatalogEntities : DbContext
+    internal class TasteEntities : DbContext
     {
-        public CatalogEntities(DbContextOptions options) : base(options)
+        public TasteEntities(DbContextOptions options) : base(options)
         {
         }
 
@@ -24,12 +24,12 @@ namespace Muuvis.Catalog.EntityFramework.DataModel
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.HasDefaultSchema("Catalog");
-            modelBuilder.Entity<Movie>().HasKey(m => m.Id);
-            modelBuilder.Entity<Movie>().Property(m => m.Id).HasMaxLength(36);
-            modelBuilder.Entity<Movie>().Property(m => m.Title).HasMaxLength(255);
+            modelBuilder.HasDefaultSchema("Taste");
+            modelBuilder.Entity<Suggestion>().HasKey(m => m.Id);
+            modelBuilder.Entity<Suggestion>().Property(m => m.Id).HasMaxLength(36);
+            modelBuilder.Entity<Suggestion>().Property(m => m.MovieId).HasMaxLength(36);
         }
 
-        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Suggestion> Suggestions { get; set; }
     }
 }

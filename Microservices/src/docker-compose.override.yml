@@ -6,6 +6,11 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "1234:80"
+  muuvis.taste.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "1235:80"
   db:
     environment:
       SA_PASSWORD: "Test1234"
@@ -14,7 +19,14 @@ services:
   bus:
     ports:
       - "8080:15672"
+  muuvis.taste.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
 networks:
   default:
     external:
       name: nat
+

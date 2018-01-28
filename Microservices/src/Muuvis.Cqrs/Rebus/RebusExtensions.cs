@@ -7,22 +7,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Muuvis.Common;
+using Muuvis.Cqrs;
 using Muuvis.Cqrs.Rebus;
 using Rebus.Activation;
+using Rebus.Bus;
 using Rebus.Config;
 using Rebus.Messages;
 using Rebus.Pipeline;
 using Rebus.Pipeline.Receive;
 using Rebus.Pipeline.Send;
 
-namespace Muuvis.Cqrs
+// ReSharper disable once CheckNamespace
+namespace Rebus.Config
 {
     public static class Extensions
     {
-        //public static Task<IQueuedHandle> SendAsync(this IOperationSender sender, IOperationRequest request)
-        //{
-        //    return sender.SendAsync(request, null, null);
-        //}
 
         public static void IncludePrincipalClaims(this OptionsConfigurer configurer, IServiceProvider provider)
         {

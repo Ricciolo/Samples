@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Muuvis.Catalog.Cqrs;
-using Muuvis.Cqrs;
-using Rebus.Routing;
-using Rebus.Routing.TypeBased;
+﻿using Muuvis.Catalog.Cqrs;
+using Muuvis.Catalog.Cqrs.Commands;
+using Muuvis.Catalog.Cqrs.Events;
 
 
 // ReSharper disable once CheckNamespace
@@ -16,14 +10,21 @@ namespace Muuvis.Cqrs
     {
         public static ICqrsConfigurer AddCatalogQueue(this ICqrsConfigurer configurer)
         {
-            configurer.AddQueue(Constants.CommandsQueueName);
+            configurer.AddQueue(Queues.Catalog.CommandsQueueName);
 
             return configurer;
         }
 
-        public static ICqrsConfigurer AddCatalogCommands(this ICqrsConfigurer configurer)
+        public static ICqrsConfigurer AddCatalogCommandsRoute(this ICqrsConfigurer configurer)
         {
-            configurer.AddCommandsFromAssemblyOfType<AddMovieCommand>(Constants.CommandsQueueName);
+            configurer.AddCommandsRouteFromAssemblyOfType<AddMovieCommand>(Queues.Catalog.CommandsQueueName);
+
+            return configurer;
+        }
+
+        public static ICqrsConfigurer AddCatalogEventsRoute(this ICqrsConfigurer configurer)
+        {
+            configurer.AddEventsRouteFromAssemblyOfType<MovieAddedEvent>(Queues.Catalog.EventsQueueName);
 
             return configurer;
         }

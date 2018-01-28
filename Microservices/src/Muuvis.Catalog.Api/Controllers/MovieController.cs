@@ -6,8 +6,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using Muuvis.Catalog.Api.Models.Movie;
 using Muuvis.Catalog.Cqrs;
+using Muuvis.Catalog.Cqrs.Commands;
+using Muuvis.Catalog.Cqrs.Events;
+using Muuvis.Common;
+using Muuvis.Cqrs.Rebus;
+using Rebus;
 using Rebus.Bus;
 
 namespace Muuvis.Catalog.Api.Controllers
@@ -35,6 +41,7 @@ namespace Muuvis.Catalog.Api.Controllers
             [FromServices] IBus bus,
             [Required, FromBody]PostModel model)
         {
+            // Hack: just for testing claims into the command handler
             HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity(new [] {new Claim(ClaimsIdentity.DefaultNameClaimType, "test")}, "test"));
 
             if (model == null || !ModelState.IsValid)
@@ -49,21 +56,11 @@ namespace Muuvis.Catalog.Api.Controllers
                 Year = model.Year
             };
 
-            await bus.Send(command);
+            //await bus.Send(command);
+            string movieId = await bus.SendRequest<string>(command);
 
-            return CreatedAtAction("Get", new { command.Id });
+            return CreatedAtAction("Get", new { id = movieId });
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

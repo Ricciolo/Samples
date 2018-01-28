@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Rebus.Async" Version="5.0.0" />
     <PackageReference Include="Rebus.RabbitMq" Version="4.3.0" />
     <PackageReference Include="Rebus.Serilog" Version="4.0.0" />
     <PackageReference Include="Rebus.ServiceProvider" Version="4.0.1" />

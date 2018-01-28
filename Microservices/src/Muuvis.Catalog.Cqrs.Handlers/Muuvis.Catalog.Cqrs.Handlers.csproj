@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
+    <PackageReference Include="Rebus" Version="4.2.1" />
+    <PackageReference Include="Rebus.TransactionScope" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Muuvis.Catalog.Cqrs\Muuvis.Catalog.Cqrs.csproj" />
+    <ProjectReference Include="..\Muuvis.Catalog.DomainModel\Muuvis.Catalog.DomainModel.csproj" />
+    <ProjectReference Include="..\Muuvis.Catalog.ReadModel\Muuvis.Catalog.ReadModel.csproj" />
+    <ProjectReference Include="..\Muuvis.Cqrs\Muuvis.Cqrs.csproj" />
+    <ProjectReference Include="..\Muuvis.DataAccessObject\Muuvis.DataAccessObject.csproj" />
+    <ProjectReference Include="..\Muuvis.Repository\Muuvis.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

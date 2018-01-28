@@ -16,7 +16,8 @@ namespace Muuvis.Catalog.DomainModel
 
         public Movie(string id, string title)
         {
-            Id = id ?? throw new ArgumentNullException(nameof(id));
+            if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(id));
+            Id = id;
             Title = title;
             Year = 1900;
         }

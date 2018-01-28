@@ -7,6 +7,5 @@ namespace Muuvis.Cqrs
 {
     public interface IMessage
     {
-        
     }
 }

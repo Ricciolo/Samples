@@ -4,8 +4,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Muuvis.Catalog.Cqrs;
+using Muuvis.Catalog.Cqrs.Events;
 using Muuvis.Catalog.Cqrs.Handlers;
 using Muuvis.Cqrs;
+using Rebus.Bus;
 using Rebus.Routing;
 using Rebus.Routing.TypeBased;
 
@@ -15,12 +17,16 @@ namespace Muuvis.Cqrs
 {
     public static class CqrsExtensions
     {
-        public static ICqrsConfigurer AddCatalogCommandHandlers(this ICqrsConfigurer configurer)
+        public static ICqrsConfigurer AddCatalogHandlers(this ICqrsConfigurer configurer)
         {
-            configurer.AddCommandHandlersFromAssemblyOfType<MovieHandlers>();
+            configurer.AddHandlersFromAssemblyOfType<MovieHandlers>();
 
             return configurer;
         }
 
+        public static void CatalogSubscribe(this ICqrsConfigurer configurer)
+        {
+            configurer.Subscribe<MovieAddedEvent>();
+        }
     }
 }

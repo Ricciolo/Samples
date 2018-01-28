@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-    <PackageReference Include="Rebus.Async" Version="5.0.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.0" />
     <PackageReference Include="Serilog.Sinks.ColoredConsole" Version="3.0.1" />
   </ItemGroup>
@@ -21,16 +20,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Muuvis.Catalog.Cqrs.Handlers\Muuvis.Catalog.Cqrs.Handlers.csproj" />
-    <ProjectReference Include="..\Muuvis.Catalog.Cqrs\Muuvis.Catalog.Cqrs.csproj" />
-    <ProjectReference Include="..\Muuvis.Catalog.DomainModel\Muuvis.Catalog.DomainModel.csproj" />
-    <ProjectReference Include="..\Muuvis.Catalog.EntityFramework\Muuvis.Catalog.EntityFramework.csproj" />
-    <ProjectReference Include="..\Muuvis.Catalog.ReadModel\Muuvis.Catalog.ReadModel.csproj" />
     <ProjectReference Include="..\Muuvis.Common\Muuvis.Common.csproj" />
     <ProjectReference Include="..\Muuvis.Cqrs\Muuvis.Cqrs.csproj" />
     <ProjectReference Include="..\Muuvis.DataAccessObject\Muuvis.DataAccessObject.csproj" />
     <ProjectReference Include="..\Muuvis.EntityFramework\Muuvis.EntityFramework.csproj" />
     <ProjectReference Include="..\Muuvis.Repository\Muuvis.Repository.csproj" />
+    <ProjectReference Include="..\Muuvis.Taste.Cqrs.Handlers\Muuvis.Taste.Cqrs.Handlers.csproj" />
+    <ProjectReference Include="..\Muuvis.Taste.Cqrs\Muuvis.Taste.Cqrs.csproj" />
+    <ProjectReference Include="..\Muuvis.Taste.DomainModel\Muuvis.Taste.DomainModel.csproj" />
+    <ProjectReference Include="..\Muuvis.Taste.EntityFramework\Muuvis.Taste.EntityFramework.csproj" />
+    <ProjectReference Include="..\Muuvis.Taste.ReadModel\Muuvis.Taste.ReadModel.csproj" />
   </ItemGroup>
 
 </Project>
