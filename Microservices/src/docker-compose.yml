@@ -17,6 +17,14 @@ services:
     depends_on:
       - db
       - bus
+  muuvis.composition.api:
+    image: muuvis.composition.api
+    build:
+      context: .
+      dockerfile: ../Muuvis.Composition.Api/Dockerfile
+    depends_on:
+      - muuvis.taste.api
+      - muuvis.catalog.api
   db:
     image: "microsoft/mssql-server-linux"
     environment:
