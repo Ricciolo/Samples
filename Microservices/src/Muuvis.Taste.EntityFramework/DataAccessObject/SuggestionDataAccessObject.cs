@@ -18,6 +18,7 @@ namespace Muuvis.Taste.EntityFramework.DataAccessObject
         {
             Id = m.Id,
             MovieId = m.MovieId,
+            Affinity = m.Affinity
         });
     }
 }

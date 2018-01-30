@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Humanizer;
 using MassTransit;
 
 namespace Muuvis.Catalog.DomainModel
@@ -31,7 +32,8 @@ namespace Muuvis.Catalog.DomainModel
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(value));
                 if (value.Length > 255) throw new ArgumentException("Value cannot exceed 255 characters.", nameof(value));
-                _title = value ;
+
+                _title = value.Titleize();
             }
         }
 

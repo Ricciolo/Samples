@@ -21,7 +21,7 @@ services:
     image: muuvis.composition.api
     build:
       context: .
-      dockerfile: ../Muuvis.Composition.Api/Dockerfile
+      dockerfile: Muuvis.Composition.Api\Dockerfile
     depends_on:
       - muuvis.taste.api
       - muuvis.catalog.api

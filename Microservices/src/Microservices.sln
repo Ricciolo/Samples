@@ -45,7 +45,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muuvis.Catalog.Cqrs.Handler
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muuvis.Taste.Cqrs.Handlers", "Muuvis.Taste.Cqrs.Handlers\Muuvis.Taste.Cqrs.Handlers.csproj", "{448B8481-0C58-4C8C-82AF-2FED923C444B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muuvis.Composition.Api", "..\Muuvis.Composition.Api\Muuvis.Composition.Api.csproj", "{E2EC175D-57D0-4E6B-ADFC-C1996494340E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muuvis.Composition.Api", "Muuvis.Composition.Api\Muuvis.Composition.Api.csproj", "{98172086-D7AB-4A20-BABA-B3F8DF27C347}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,10 +125,10 @@ Global
 		{448B8481-0C58-4C8C-82AF-2FED923C444B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{448B8481-0C58-4C8C-82AF-2FED923C444B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{448B8481-0C58-4C8C-82AF-2FED923C444B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E2EC175D-57D0-4E6B-ADFC-C1996494340E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2EC175D-57D0-4E6B-ADFC-C1996494340E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2EC175D-57D0-4E6B-ADFC-C1996494340E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2EC175D-57D0-4E6B-ADFC-C1996494340E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98172086-D7AB-4A20-BABA-B3F8DF27C347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98172086-D7AB-4A20-BABA-B3F8DF27C347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98172086-D7AB-4A20-BABA-B3F8DF27C347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98172086-D7AB-4A20-BABA-B3F8DF27C347}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

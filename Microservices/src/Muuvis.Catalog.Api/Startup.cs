@@ -34,6 +34,8 @@ namespace Muuvis.Catalog.Api
             services.AddCatalogEntityFrameworkRepositories(o => o.UseSqlServer(Configuration.GetConnectionString("Muuvis")));
             services.AddCatalogEntityFrameworkDataAccessObjects();
 
+            services.AddSingleton(MapperConfig.Get);
+
             services.AddServiceBus(r => r
                 .AddCatalogQueue()
                 .AddCatalogCommandsRoute()

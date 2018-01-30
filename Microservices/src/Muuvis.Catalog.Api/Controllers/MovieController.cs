@@ -4,8 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MassTransit;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Muuvis.Catalog.Api.Models.Movie;
 using Muuvis.Catalog.Cqrs;
@@ -13,36 +17,51 @@ using Muuvis.Catalog.Cqrs.Commands;
 using Muuvis.Catalog.Cqrs.Events;
 using Muuvis.Common;
 using Muuvis.Cqrs.Rebus;
+using Muuvis.DataAccessObject;
 using Rebus;
 using Rebus.Bus;
 
 namespace Muuvis.Catalog.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class MovieController : Controller
     {
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IQueryable<GetModel> Get(
+            [FromServices]IDataAccessObject<ReadModel.Movie> movieDataAccessObject,
+            [FromServices]IMapper mapper)
         {
-            return new string[] { "value1", "value2" };
+            return movieDataAccessObject.ProjectTo<GetModel>(mapper.ConfigurationProvider);
         }
 
-        // GET api/values/5
+        // GET suggestion/{id}
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(
+            [FromServices]IDataAccessObject<ReadModel.Movie> suggestionsDataAccessObject,
+            [FromServices]IMapper mapper,
+            string id)
         {
-            return "value";
+            GetModel result = suggestionsDataAccessObject.Where(d => d.Id == id)
+                .ProjectTo<GetModel>(mapper.ConfigurationProvider)
+                .FirstOrDefault();
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
 
         // POST api/values
         [HttpPost]
         public async Task<IActionResult> Post(
-            [FromServices] IBus bus,
-            [Required, FromBody]PostModel model)
+                [FromServices] IBus bus,
+                [Required, FromBody]PostModel model)
         {
             // Hack: just for testing claims into the command handler
-            HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity(new [] {new Claim(ClaimsIdentity.DefaultNameClaimType, "test")}, "test"));
+            HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimsIdentity.DefaultNameClaimType, "test") }, "test"));
 
             if (model == null || !ModelState.IsValid)
             {
