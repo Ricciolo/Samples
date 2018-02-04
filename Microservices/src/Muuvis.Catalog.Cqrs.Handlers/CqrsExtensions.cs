@@ -7,6 +7,7 @@ using Muuvis.Catalog.Cqrs;
 using Muuvis.Catalog.Cqrs.Events;
 using Muuvis.Catalog.Cqrs.Handlers;
 using Muuvis.Cqrs;
+using Muuvis.Taste.Cqrs.Events;
 using Rebus.Bus;
 using Rebus.Routing;
 using Rebus.Routing.TypeBased;
@@ -27,6 +28,7 @@ namespace Muuvis.Cqrs
         public static void CatalogSubscribe(this ICqrsConfigurer configurer)
         {
             configurer.Subscribe<MovieAddedEvent>();
+            configurer.Subscribe<SuggestionEvaluatedEvent>();
         }
     }
 }

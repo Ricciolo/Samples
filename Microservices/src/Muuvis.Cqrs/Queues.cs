@@ -18,7 +18,7 @@ namespace Muuvis.Cqrs
                 
             }
 
-            public readonly string CommandsQueueName = "Catalog-Commands";
+            public readonly string QueueName = "Catalog";
 
             public readonly string EventsQueueName = "Catalog-Events";
 
@@ -30,7 +30,7 @@ namespace Muuvis.Cqrs
 
             }
 
-            public readonly string CommandsQueueName = "Taste-Commands";
+            public readonly string QueueName = "Taste";
 
             public readonly string EventsQueueName = "Taste-Events";
 

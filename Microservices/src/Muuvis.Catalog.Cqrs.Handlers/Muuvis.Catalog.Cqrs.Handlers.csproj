@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Muuvis.Cqrs\Muuvis.Cqrs.csproj" />
     <ProjectReference Include="..\Muuvis.DataAccessObject\Muuvis.DataAccessObject.csproj" />
     <ProjectReference Include="..\Muuvis.Repository\Muuvis.Repository.csproj" />
+    <ProjectReference Include="..\Muuvis.Taste.Cqrs\Muuvis.Taste.Cqrs.csproj" />
   </ItemGroup>
 
 </Project>

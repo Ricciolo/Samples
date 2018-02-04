@@ -9,14 +9,14 @@ namespace Muuvis.Cqrs
     {
         public static ICqrsConfigurer AddTasteQueue(this ICqrsConfigurer configurer)
         {
-            configurer.AddQueue(Queues.Taste.CommandsQueueName);
+            configurer.AddQueue(Queues.Taste.QueueName);
 
             return configurer;
         }
 
         public static ICqrsConfigurer AddTasteCommandsRoute(this ICqrsConfigurer configurer)
         {
-            configurer.AddCommandsRouteFromAssemblyOfType<EvaluateSuggestionCommand>(Queues.Taste.CommandsQueueName);
+            configurer.AddCommandsRouteFromAssemblyOfType<EvaluateSuggestionCommand>(Queues.Taste.QueueName);
 
             return configurer;
         }

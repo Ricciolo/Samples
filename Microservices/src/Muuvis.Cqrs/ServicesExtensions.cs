@@ -12,6 +12,7 @@ using Muuvis.Cqrs;
 using Muuvis.Cqrs.Rebus;
 using Rebus.Bus;
 using Rebus.Config;
+using Rebus.Persistence.InMem;
 using Rebus.Retry.Simple;
 using Rebus.Routing;
 using Rebus.Routing.TypeBased;
@@ -36,8 +37,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddRebus((configure, provider) =>
             {
-                string timeoutsConnectionString = provider.GetRequiredService<IConfiguration>().GetConnectionString("Timeouts");
-                EnsureDatabaseCreated(timeoutsConnectionString);
+                string connectionString = provider.GetRequiredService<IConfiguration>().GetConnectionString("Rebus");
+                EnsureDatabaseCreated(connectionString);
 
                 return configure
                     .Serialization(s => s.UseNewtonsoftJson())
@@ -47,9 +48,11 @@ namespace Microsoft.Extensions.DependencyInjection
                         o.SetNumberOfWorkers(w);
                         o.SetMaxParallelism(w);
                         o.IncludePrincipalClaims(provider);
+                        o.SetDueTimeoutsPollInteval(TimeSpan.FromSeconds(1));
                         o.SimpleRetryStrategy(maxDeliveryAttempts: 1, secondLevelRetriesEnabled: true);
                     })
-                    .Timeouts(t => t.StoreInSqlServer(timeoutsConnectionString, "MessageTimeouts"))
+                    .Sagas(s => s.StoreInSqlServer(connectionString, "Sagas", "SagasIndex"))
+                    .Timeouts(t => t.StoreInSqlServer(connectionString, "MessageTimeouts"))
                     .Logging(l => l.Serilog())
                     .Transport(configurer.ApplyActions)
                     .Routing(configurer.ApplyActions);

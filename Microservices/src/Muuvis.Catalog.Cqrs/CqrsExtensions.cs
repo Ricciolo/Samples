@@ -10,14 +10,14 @@ namespace Muuvis.Cqrs
     {
         public static ICqrsConfigurer AddCatalogQueue(this ICqrsConfigurer configurer)
         {
-            configurer.AddQueue(Queues.Catalog.CommandsQueueName);
+            configurer.AddQueue(Queues.Catalog.QueueName);
 
             return configurer;
         }
 
         public static ICqrsConfigurer AddCatalogCommandsRoute(this ICqrsConfigurer configurer)
         {
-            configurer.AddCommandsRouteFromAssemblyOfType<AddMovieCommand>(Queues.Catalog.CommandsQueueName);
+            configurer.AddCommandsRouteFromAssemblyOfType<AddMovieCommand>(Queues.Catalog.QueueName);
 
             return configurer;
         }

@@ -12,11 +12,13 @@ using Muuvis.Repository;
 using Rebus;
 using Rebus.Bus;
 using Rebus.Handlers;
+using Rebus.Messages;
+using Rebus.Pipeline;
 using Rebus.TransactionScopes;
 
 namespace Muuvis.Catalog.Cqrs.Handlers
 {
-    public class MovieHandlers : IHandleMessages<AddMovieCommand>, IHandleMessages<MovieAddedEvent>
+    public class MovieHandlers : IHandleMessages<AddMovieCommand>
     {
         private readonly ILogger<MovieHandlers> _logger;
         private readonly IBus _bus;
@@ -43,8 +45,12 @@ namespace Muuvis.Catalog.Cqrs.Handlers
             if (await _dataAccessObject.AnyAsync(m => m.Id == command.Id))
             {
                 _logger.LogWarning("Movie {title} already added", command.Title);
+
+                await _bus.Publish(new MovieAddedEvent { MovieId = command.Id });
                 return;
             }
+
+            Message rawMessage = MessageContext.Current.Message;
 
             _logger.LogInformation("Add movie {title} requested by {user}", command.Title, _userAccessor.User?.Identity.Name);
 
@@ -58,19 +64,15 @@ namespace Muuvis.Catalog.Cqrs.Handlers
                 };
                 await _repository.AddAsync(movie);
 
-                await _bus.Publish(new MovieAddedEvent { Id = command.Id });
+                await _bus.Publish(new MovieAddedEvent { MovieId = command.Id });
 
             //    transaction.Complete();
             //}
 
-            await _bus.Reply(command.Id);
+            // Used in saga, no more needed
+            // await _bus.Reply(command.Id);
         }
 
-        public Task Handle(MovieAddedEvent message)
-        {
-            // For testing purpose only
-            return Task.CompletedTask;
-        }
     }
 
 }

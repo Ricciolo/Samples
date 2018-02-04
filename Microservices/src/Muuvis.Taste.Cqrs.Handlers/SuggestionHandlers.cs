@@ -8,6 +8,7 @@ using Muuvis.Cqrs;
 using Muuvis.DataAccessObject;
 using Muuvis.Repository;
 using Muuvis.Taste.Cqrs.Commands;
+using Muuvis.Taste.Cqrs.Events;
 using Muuvis.Taste.DomainModel;
 using Rebus;
 using Rebus.Bus;
@@ -40,26 +41,29 @@ namespace Muuvis.Taste.Cqrs.Handlers
 
         public async Task Handle(EvaluateSuggestionCommand message)
         {
-            if (await _dataAccessObject.AnyAsync(m => m.MovieId == message.MovieId)) return;
-
-            _logger.LogInformation("Evaluating suggestion for {movieId}", message.MovieId);
-
-            if (Environment.TickCount % 2d == 0d)
+            if (!await _dataAccessObject.AnyAsync(m => m.MovieId == message.MovieId))
             {
-                throw new Exception("Random error");
+                _logger.LogInformation("Evaluating suggestion for {movieId}", message.MovieId);
+
+                //if (Environment.TickCount % 2d == 0d)
+                //{
+                //    throw new Exception("Random error");
+                //}
+
+                await _repository.AddAsync(new Suggestion(message.MovieId)
+                {
+                    Affinity = (float) Math.Round(new Random(Environment.TickCount).NextDouble(), 2)
+                });
             }
 
-            await _repository.AddAsync(new Suggestion(message.MovieId)
-            {
-                Affinity = (float) Math.Round(new Random(Environment.TickCount).NextDouble(), 2)
-            });
+            await _bus.Publish(new SuggestionEvaluatedEvent {MovieId = message.MovieId});
         }
 
         public async Task Handle(MovieAddedEvent message)
         {
-            _logger.LogInformation("New movie {movieId} added", message.Id);
+            _logger.LogInformation("New movie {movieId} added", message.MovieId);
 
-            await _bus.Send(new EvaluateSuggestionCommand {MovieId = message.Id});
+            await _bus.Send(new EvaluateSuggestionCommand {MovieId = message.MovieId});
         }
 
         public Task Handle(IFailed<EvaluateSuggestionCommand> message)

@@ -76,7 +76,7 @@ namespace Muuvis.Catalog.Api.Controllers
             };
 
             //await bus.Send(command);
-            string movieId = await bus.SendRequest<string>(command);
+            string movieId = await bus.SendRequest<string>(command, timeout: TimeSpan.FromMinutes(1));
 
             return CreatedAtAction("Get", new { id = movieId });
         }
