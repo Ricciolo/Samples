@@ -69,8 +69,7 @@ namespace Muuvis.Catalog.Cqrs.Handlers
             //    transaction.Complete();
             //}
 
-            // Used in saga, no more needed
-            // await _bus.Reply(command.Id);
+            await _bus.Reply(command.Id);
         }
 
     }
