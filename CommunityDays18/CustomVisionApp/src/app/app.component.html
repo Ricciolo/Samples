@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Community Days</h1>
+    <h4>Custom Vision</h4>
+  </div>
+  <div class="card mb-2">
+    <div class="card-body">
+      <div class="btn-group" role="group">
+        <button class="btn btn-success" (click)="start()">Start</button>
+        <button class="btn btn-danger" (click)="stop()">Stop</button>
+        <button class="btn btn-secondary" (click)="capture()">Capture</button>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-info" role="alert">
+    {{description}}
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <canvas #canvas class="mx-auto d-none"></canvas>
+      <video #video style="width: 100%" [srcObject]="mediaStream" autoplay></video>
+    </div>
+    <div class="col-md-7">
+      <h1 class="p-3" [ngClass]="tag === 'person' ? ['bg-success','text-white'] : ['bg-light','text-dark']">{{tag}}</h1>
+      <chart #chart [options]="options"></chart>
+    </div>
+  </div>
+</div>
