@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import FrameResponse from './response.model';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,15 @@ import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angula
 })
 export class AppComponent implements OnInit {
 
-  timer = 0;
-  context: CanvasRenderingContext2D | undefined;
+  private timer = 0;
+  private context: CanvasRenderingContext2D | undefined;
+  private lastTag = '';
+  private working = false;
+
   mediaStream: MediaStream | undefined;
   description = 'Initializing...';
   tag = '';
   options: object;
-  lastTag = '';
 
   @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
   @ViewChild('video') video: ElementRef<HTMLVideoElement>;
@@ -46,9 +49,11 @@ export class AppComponent implements OnInit {
 
   stop() {
     this.description = 'Stop';
+    // Fermo la camera
     if (this.mediaStream) {
       this.mediaStream.getTracks()[0].stop();
     }
+    // Fermo la cattura dei fotogrammi
     clearInterval(this.timer);
     this.mediaStream = undefined;
   }
@@ -60,20 +65,28 @@ export class AppComponent implements OnInit {
   async run(captureMode: boolean): Promise<void> {
     this.stop();
 
+    // Attivo la camera predefinita
     this.mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
     if (this.mediaStream) {
       this.description = (captureMode) ? 'Capturing' : 'Running!';
     }
 
     const fn: any = (...args: any[]) => this.sendFrame(captureMode);
-    this.timer = setInterval(fn, 200);
+    // Attivo la cattura dei frame
+    this.timer = setInterval(fn, 500);
   }
 
   private sendFrame(captureMode: boolean) {
+    if (this.working) {
+      return;
+    }
+
+    // Ridimensiono il canvas quando la dimensione del video
     this.canvas.nativeElement.width = this.video.nativeElement.videoWidth;
     this.canvas.nativeElement.height = this.video.nativeElement.videoHeight;
     this.context.drawImage(this.video.nativeElement, 0, 0);
 
+    // Catturo il fotogramma
     this.canvas.nativeElement.toBlob(b => {
       if (!captureMode) {
         this.evaluateImage(b);
@@ -93,46 +106,85 @@ export class AppComponent implements OnInit {
     xhr.setRequestHeader('Training-Key', trainingKey);
     xhr.onload = () => {
       console.log(xhr.status);
+      this.working = false;
     };
     xhr.send(b);
   }
 
   private evaluateImage(b: Blob) {
     const xhr = new XMLHttpRequest();
+    const defaultPrediction = { probability: 0, tagName: 'none' };
+
     xhr.open('POST', 'http://localhost/image', true);
     xhr.setRequestHeader('Content-Type', 'application/octet-stream');
     xhr.onload = () => {
+      this.working = false;
+
       const p = JSON.parse(xhr.response) as FrameResponse;
-      if (p.predictions) {
-        const result = p.predictions
-          .sort((x, y) => x.probability > y.probability ? -1 : 1)[0];
+      if (!p.predictions) {
+        p.predictions = [defaultPrediction];
+      }
+      // Cerco il tag con probabilità più alta
+      let result = p.predictions
+        .sort((x, y) => x.probability > y.probability ? -1 : 1)[0];
+      // Controllo di sicurezza
+      if (!result || result.probability < 0.1) {
+        result = defaultPrediction;
+      }
 
-        this.tag = result.tagName;
-        const serie = this.chart.chart.series[0];
-        if (serie.data.length > 50) {
-          serie.removePoint();
-        }
-        serie.addPoint(result.probability * 100);
+      // Popolo il grafico
+      this.tag = result.tagName;
+      const serie = this.chart.chart.series[0];
+      if (serie.data.length > 50) {
+        serie.removePoint();
+      }
+      serie.addPoint(result.probability * 100);
 
-        if (this.tag !== 'none' && result.probability > 0.9) {
-          if (this.lastTag !== this.tag) {
-            this.notify(b);
-          }
-        }
+      console.log(this.lastTag + ' ' + result.tagName + ' ' + result.probability);
+
+      // Notifico se è un nuovo tag
+      if (this.lastTag !== this.tag) {
         this.lastTag = this.tag;
-
-        console.log(result.tagName + ' ' + result.probability);
+        if (this.tag !== 'none' || result.probability > 0.9) {
+          this.uploadImageForNotification(b, this.tag);
+        }
       }
     };
     xhr.send(b);
   }
 
-  private notify(b: Blob) {
+  private uploadImageForNotification(b: Blob, tag: string) {
+    console.log('uploadImageForNotification');
+
     const xhr = new XMLHttpRequest();
     // tslint:disable-next-line:max-line-length
-    xhr.open('POST', 'https://ricciolo.blob.core.windows.net/cdays18/screenshot.jpg?st=2018-05-23T12%3A24%3A00Z&se=2019-05-24T12%3A24%3A00Z&sp=rw&sv=2017-04-17&sr=b&sig=XQ%2Bs667jqCLgEviSKHHYrlVs%2F5vPzxaXFNxggjzvgRc%3D', true);
+    xhr.open('PUT', 'https://ricciolo.blob.core.windows.net/cdays18/screenshot.jpg?st=2018-05-23T12%3A24%3A00Z&se=2019-05-24T12%3A24%3A00Z&sp=rw&sv=2017-04-17&sr=b&sig=XQ%2Bs667jqCLgEviSKHHYrlVs%2F5vPzxaXFNxggjzvgRc%3D', true);
     xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+    xhr.setRequestHeader('x-ms-blob-type', 'BlockBlob');
+    xhr.onload = () => {
+      this.notify(tag);
+    };
+    xhr.send(b);
+  }
+
+  private notify(tag: string) {
+    console.log('notify');
+
+    const xhr = new XMLHttpRequest();
+    // tslint:disable-next-line:max-line-length
+    xhr.open('POST', 'https://cdays18fn.azurewebsites.net/api/HttpTriggerCSharp1?code=E4u89u/UaIFgsGxT63/N4dRkrnts7QDDjYEcmKwJY05uQvN3NBRi8A==', true);
     xhr.onload = () => {
     };
+    const payload = {
+      'ServiceID': 'urn:micasaverde-com:serviceId:HomeAutomationGateway1',
+      'DeviceID': 0,
+      'Command': 'RunScene',
+      'CommandParameter': 'SceneNum',
+      'Value': '777',
+      'Username': '',
+      'Action': tag,
+      'ActionCommand': 'https://ricciolo.blob.core.windows.net/cdays18/screenshot.jpg'
+    };
+    xhr.send(JSON.stringify(payload));
   }
 }
