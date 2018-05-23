@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
 
     const fn: any = (...args: any[]) => this.sendFrame(captureMode);
     // Attivo la cattura dei frame
-    this.timer = setInterval(fn, 1000);
+    this.timer = setInterval(fn, 500);
   }
 
   private sendFrame(captureMode: boolean) {
@@ -154,6 +154,8 @@ export class AppComponent implements OnInit {
   }
 
   private uploadImageForNotification(b: Blob) {
+    console.log('uploadImageForNotification');
+
     const xhr = new XMLHttpRequest();
     // tslint:disable-next-line:max-line-length
     xhr.open('PUT', 'https://ricciolo.blob.core.windows.net/cdays18/screenshot.jpg?st=2018-05-23T12%3A24%3A00Z&se=2019-05-24T12%3A24%3A00Z&sp=rw&sv=2017-04-17&sr=b&sig=XQ%2Bs667jqCLgEviSKHHYrlVs%2F5vPzxaXFNxggjzvgRc%3D', true);
@@ -166,6 +168,8 @@ export class AppComponent implements OnInit {
   }
 
   private notify() {
+    console.log('notify');
+
     const xhr = new XMLHttpRequest();
     // tslint:disable-next-line:max-line-length
     xhr.open('POST', 'https://cdays18fn.azurewebsites.net/api/HttpTriggerCSharp1?code=E4u89u/UaIFgsGxT63/N4dRkrnts7QDDjYEcmKwJY05uQvN3NBRi8A==', true);
