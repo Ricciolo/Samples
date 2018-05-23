@@ -1,0 +1,15 @@
+zip deploy
+https://ricciolo.blob.core.windows.net/cdays18/v1.zip
+https://ricciolo.blob.core.windows.net/cdays18/v2.zip
+
+http://cdays18-win-debug.azurewebsites.net/
+streaming logs
+remote debuggign
+
+authentication
+clientid: 000000004C2247E2
+secret: ejYEMKB292]:?yjhiiSJ44!
+https://cdays18-win-debug.azurewebsites.net/.auth/me
+
+function
+https://cdays18fn.azurewebsites.net/api/HttpTriggerCSharp1?code=E4u89u/UaIFgsGxT63/N4dRkrnts7QDDjYEcmKwJY05uQvN3NBRi8A==
