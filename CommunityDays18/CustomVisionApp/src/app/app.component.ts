@@ -13,12 +13,14 @@ export class AppComponent implements OnInit {
   description = 'Initializing...';
   tag = '';
   options: object;
+  lastTag = '';
 
   @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
   @ViewChild('video') video: ElementRef<HTMLVideoElement>;
   @ViewChild('chart') chart: any;
 
   constructor() {
+    // Inizializzazione del grafico
     this.options = {
       title: { text: 'Probability' },
       yAxis: {
@@ -112,9 +114,25 @@ export class AppComponent implements OnInit {
         }
         serie.addPoint(result.probability * 100);
 
+        if (this.tag !== 'none' && result.probability > 0.9) {
+          if (this.lastTag !== this.tag) {
+            this.notify(b);
+          }
+        }
+        this.lastTag = this.tag;
+
         console.log(result.tagName + ' ' + result.probability);
       }
     };
     xhr.send(b);
+  }
+
+  private notify(b: Blob) {
+    const xhr = new XMLHttpRequest();
+    // tslint:disable-next-line:max-line-length
+    xhr.open('POST', 'https://ricciolo.blob.core.windows.net/cdays18/screenshot.jpg?st=2018-05-23T12%3A24%3A00Z&se=2019-05-24T12%3A24%3A00Z&sp=rw&sv=2017-04-17&sr=b&sig=XQ%2Bs667jqCLgEviSKHHYrlVs%2F5vPzxaXFNxggjzvgRc%3D', true);
+    xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+    xhr.onload = () => {
+    };
   }
 }

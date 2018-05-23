@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartModule } from 'angular2-highcharts';
+import * as highcharts from 'highcharts';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ChartModule.forRoot(require('highcharts')),
+    ChartModule.forRoot(highcharts),
     NgbModule.forRoot()
   ],
   providers: [],
