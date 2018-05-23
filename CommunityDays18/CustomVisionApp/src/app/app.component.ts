@@ -145,15 +145,15 @@ export class AppComponent implements OnInit {
       // Notifico se è un nuovo tag
       if (this.lastTag !== this.tag) {
         this.lastTag = this.tag;
-        if (this.tag !== 'none' && result.probability > 0.9) {
-          this.uploadImageForNotification(b);
+        if (this.tag !== 'none' || result.probability > 0.9) {
+          this.uploadImageForNotification(b, this.tag);
         }
       }
     };
     xhr.send(b);
   }
 
-  private uploadImageForNotification(b: Blob) {
+  private uploadImageForNotification(b: Blob, tag: string) {
     console.log('uploadImageForNotification');
 
     const xhr = new XMLHttpRequest();
@@ -162,12 +162,12 @@ export class AppComponent implements OnInit {
     xhr.setRequestHeader('Content-Type', 'application/octet-stream');
     xhr.setRequestHeader('x-ms-blob-type', 'BlockBlob');
     xhr.onload = () => {
-      this.notify();
+      this.notify(tag);
     };
     xhr.send(b);
   }
 
-  private notify() {
+  private notify(tag: string) {
     console.log('notify');
 
     const xhr = new XMLHttpRequest();
@@ -175,7 +175,16 @@ export class AppComponent implements OnInit {
     xhr.open('POST', 'https://cdays18fn.azurewebsites.net/api/HttpTriggerCSharp1?code=E4u89u/UaIFgsGxT63/N4dRkrnts7QDDjYEcmKwJY05uQvN3NBRi8A==', true);
     xhr.onload = () => {
     };
-    // tslint:disable-next-line:max-line-length
-    xhr.send('{"ServiceID":"urn:micasaverde-com:serviceId:HomeAutomationGateway1","DeviceID":0,"Command":"RunScene","CommandParameter":"SceneNum","Value":"777","Username":"","Action":"action","ActionCommand":"https://ricciolo.blob.core.windows.net/cdays18/screenshot.jpg"}');
+    const payload = {
+      'ServiceID': 'urn:micasaverde-com:serviceId:HomeAutomationGateway1',
+      'DeviceID': 0,
+      'Command': 'RunScene',
+      'CommandParameter': 'SceneNum',
+      'Value': '777',
+      'Username': '',
+      'Action': tag,
+      'ActionCommand': 'https://ricciolo.blob.core.windows.net/cdays18/screenshot.jpg'
+    };
+    xhr.send(JSON.stringify(payload));
   }
 }
