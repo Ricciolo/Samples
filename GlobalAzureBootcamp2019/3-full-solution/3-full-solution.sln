@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{34036844-64E7-43A5-9151-4AD90E180989}") = "AzureIotEdgeApp1.Linux.Amd64", "AzureIotEdgeApp1.Linux.Amd64\AzureIotEdgeApp1.Linux.Amd64.iotedgeproj", "{7A1E24E4-DE48-4F2B-A80E-4093E9F5606A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoCollector", "PhotoCollector\PhotoCollector.csproj", "{6FAD5D8D-51A7-47BD-BEFD-11029DEB1B6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoBrowser", "PhotoBrowser\PhotoBrowser.csproj", "{51DF2315-F2ED-404A-AD2D-CC13AEC35847}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoFunctions", "PhotoFunctions\PhotoFunctions.csproj", "{3BB4331C-52E3-48EE-B9FA-68C08EF6B8D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A1E24E4-DE48-4F2B-A80E-4093E9F5606A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1E24E4-DE48-4F2B-A80E-4093E9F5606A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1E24E4-DE48-4F2B-A80E-4093E9F5606A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A1E24E4-DE48-4F2B-A80E-4093E9F5606A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FAD5D8D-51A7-47BD-BEFD-11029DEB1B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAD5D8D-51A7-47BD-BEFD-11029DEB1B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAD5D8D-51A7-47BD-BEFD-11029DEB1B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAD5D8D-51A7-47BD-BEFD-11029DEB1B6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51DF2315-F2ED-404A-AD2D-CC13AEC35847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51DF2315-F2ED-404A-AD2D-CC13AEC35847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51DF2315-F2ED-404A-AD2D-CC13AEC35847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51DF2315-F2ED-404A-AD2D-CC13AEC35847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BB4331C-52E3-48EE-B9FA-68C08EF6B8D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BB4331C-52E3-48EE-B9FA-68C08EF6B8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BB4331C-52E3-48EE-B9FA-68C08EF6B8D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BB4331C-52E3-48EE-B9FA-68C08EF6B8D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58026E2F-B194-4301-B34B-7AC570F1DE29}
+	EndGlobalSection
+EndGlobal

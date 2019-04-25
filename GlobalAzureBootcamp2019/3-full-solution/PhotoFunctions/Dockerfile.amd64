@@ -1,0 +1,16 @@
+FROM microsoft/dotnet:2.1-sdk AS build-env
+WORKDIR /app
+
+COPY *.csproj ./
+RUN dotnet restore
+
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/azure-functions/dotnet:2.0-iot-edge
+
+ENV AzureWebJobsScriptRoot=/app
+
+ENV AzureFunctionsJobHost__Logging__Console__IsEnabled=true
+
+COPY --from=build-env /app/out /app

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>7a1e24e4-de48-4f2b-a80e-4093e9f5606a</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EdgeTargetPlatform>Linux Amd64</EdgeTargetPlatform>
+    <EdgeTargetConfiguration>Debug</EdgeTargetConfiguration>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\EdgeBuildSystem\AzureIoTEdgeProject.targets" />
+  <ItemGroup>
+    <None Include="deployment.template.json" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoBrowser\PhotoBrowser.csproj" />
+    <ProjectReference Include="..\PhotoCollector\PhotoCollector.csproj" />
+    <ProjectReference Include="..\PhotoFunctions\PhotoFunctions.csproj" />
+  </ItemGroup>
+  <Import Project="$(SolutionDir)\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.4.0\build\AzureIoTEdgeProject.Build.targets" Condition="Exists('$(SolutionDir)\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.4.0\build\AzureIoTEdgeProject.Build.targets')" />
+  <Import Project="$(SolutionDir)\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.4.0\build\AzureIoTEdgeProject.Build.props" Condition="Exists('$(SolutionDir)\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.4.0\build\AzureIoTEdgeProject.Build.props')" />
+</Project>

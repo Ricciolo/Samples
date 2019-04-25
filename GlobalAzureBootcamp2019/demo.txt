@@ -1,0 +1,27 @@
+**** TEST DEPLOY ***
+
+microsoft/dotnet-samples:aspnetapp
+
+{
+  "ExposedPorts": {
+    "80/tcp": {}
+  },
+  "HostConfig": {
+    "PortBindings": {
+      "80/tcp": [
+        {
+          "HostPort": "8000"
+        }
+      ]
+    }
+  }
+}
+
+tags.environment = 'prod'
+
+*** DEBUG SINGOLO MODULO ***
+curl --header "Content-Type: application/json" --request POST --data '{"inputName": "input1","data":"hello world"}' http://localhost:53000/api/v1/messages
+
+
+*** STORAGE BLOB ***
+DefaultEndpointsProtocol=http;BlobEndpoint=http://localhost:11002/photostorage;AccountName=photostorage;AccountKey=rPB6X4iBnQsQHg+lP+H0t9Y13WypkbISU0tCEx6J9LgKBH9P1+hMEmn1shdW50XAMYcQQ8E9WyaT7znFpAwnoA==
