@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{34036844-64E7-43A5-9151-4AD90E180989}") = "AzureIotEdgeApp1.Linux.Amd64", "AzureIotEdgeApp1.Linux.Amd64\AzureIotEdgeApp1.Linux.Amd64.iotedgeproj", "{7A1E24E4-DE48-4F2B-A80E-4093E9F5606A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoCollector", "PhotoCollector\PhotoCollector.csproj", "{6FAD5D8D-51A7-47BD-BEFD-11029DEB1B6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoCollector", "modules\PhotoCollector\PhotoCollector.csproj", "{6FAD5D8D-51A7-47BD-BEFD-11029DEB1B6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoBrowser", "PhotoBrowser\PhotoBrowser.csproj", "{51DF2315-F2ED-404A-AD2D-CC13AEC35847}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoBrowser", "modules\PhotoBrowser\PhotoBrowser.csproj", "{51DF2315-F2ED-404A-AD2D-CC13AEC35847}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoFunctions", "PhotoFunctions\PhotoFunctions.csproj", "{3BB4331C-52E3-48EE-B9FA-68C08EF6B8D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoFunctions", "modules\PhotoFunctions\PhotoFunctions.csproj", "{3BB4331C-52E3-48EE-B9FA-68C08EF6B8D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

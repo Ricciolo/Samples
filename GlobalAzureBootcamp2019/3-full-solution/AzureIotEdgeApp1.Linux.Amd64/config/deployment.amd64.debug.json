@@ -8,7 +8,13 @@
           "settings": {
             "minDockerVersion": "v1.25",
             "loggingOptions": "",
-            "registryCredentials": {}
+            "registryCredentials": {
+              "gab19": {
+                "username": "$CONTAINER_REGISTRY_USERNAME_gab19",
+                "password": "$CONTAINER_REGISTRY_PASSWORD_gab19",
+                "address": "gab19.azurecr.io"
+              }
+            }
           }
         },
         "systemModules": {
@@ -36,7 +42,7 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "localhost:5000/photocollector:0.0.1-amd64.debug",
+              "image": "gab19.azurecr.io/photocollector:0.0.1-amd64.debug",
               "createOptions": "{}"
             },
             "env": {
@@ -51,7 +57,7 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "localhost:5000/photofunctions:0.0.1-amd64.debug",
+              "image": "gab19.azurecr.io/photofunctions:0.0.1-amd64.debug",
               "createOptions": "{}"
             },
             "env": {
@@ -66,7 +72,7 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "localhost:5000/photobrowser:0.0.1-amd64.debug",
+              "image": "gab19.azurecr.io/photobrowser:0.0.1-amd64.debug",
               "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"5000/tcp\":[{\"HostPort\":\"8080\"}]}}}"
             },
             "env": {
@@ -101,7 +107,7 @@
         "schemaVersion": "1.0",
         "routes": {
           "photoCollectorToResizer": "FROM /messages/modules/photoCollector/outputs/photo INTO BrokeredEndpoint(\"/modules/photoFunctions/inputs/resizer\")",
-          "resizerToCloud": "FROM /messages/modules/photoFunctions/outputs/imageInfo INTO $upstream)"
+          "resizerToCloud": "FROM /messages/modules/photoFunctions/outputs/imageInfo INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200

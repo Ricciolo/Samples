@@ -23,9 +23,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PhotoBrowser\PhotoBrowser.csproj" />
-    <ProjectReference Include="..\PhotoCollector\PhotoCollector.csproj" />
-    <ProjectReference Include="..\PhotoFunctions\PhotoFunctions.csproj" />
+    <ProjectReference Include="..\modules\PhotoBrowser\PhotoBrowser.csproj" />
+    <ProjectReference Include="..\modules\PhotoCollector\PhotoCollector.csproj" />
+    <ProjectReference Include="..\modules\PhotoFunctions\PhotoFunctions.csproj" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.4.0\build\AzureIoTEdgeProject.Build.targets" Condition="Exists('$(SolutionDir)\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.4.0\build\AzureIoTEdgeProject.Build.targets')" />
   <Import Project="$(SolutionDir)\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.4.0\build\AzureIoTEdgeProject.Build.props" Condition="Exists('$(SolutionDir)\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.4.0\build\AzureIoTEdgeProject.Build.props')" />

@@ -9,7 +9,13 @@
           "settings": {
             "minDockerVersion": "v1.25",
             "loggingOptions": "",
-            "registryCredentials": {}
+            "registryCredentials": {
+              "gab19": {
+                "username": "$CONTAINER_REGISTRY_USERNAME_gab19",
+                "password": "$CONTAINER_REGISTRY_PASSWORD_gab19",
+                "address": "gab19.azurecr.io"
+              }
+            }
           }
         },
         "systemModules": {
@@ -58,8 +64,7 @@
             "restartPolicy": "always",
             "settings": {
               "image": "${MODULES.PhotoCollector}",
-              "createOptions": {
-              }
+              "createOptions": {}
             },
             "env": {
               "STORAGE_CONNECTION_STRING": {
@@ -143,7 +148,7 @@
         "schemaVersion": "1.0",
         "routes": {
           "photoCollectorToResizer": "FROM /messages/modules/photoCollector/outputs/photo INTO BrokeredEndpoint(\"/modules/photoFunctions/inputs/resizer\")",
-          "resizerToCloud": "FROM /messages/modules/photoFunctions/outputs/imageInfo INTO $upstream)"
+          "resizerToCloud": "FROM /messages/modules/photoFunctions/outputs/imageInfo INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200
