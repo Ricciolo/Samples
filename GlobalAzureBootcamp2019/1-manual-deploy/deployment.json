@@ -55,7 +55,9 @@
         }
       },
       "tempSensor": {
-        "properties.desired": {}
+        "properties.desired": {
+          "test": 1
+        }
       }
     }
   }

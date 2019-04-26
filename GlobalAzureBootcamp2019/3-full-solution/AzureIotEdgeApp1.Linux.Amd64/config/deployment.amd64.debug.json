@@ -100,7 +100,8 @@
       "properties.desired": {
         "schemaVersion": "1.0",
         "routes": {
-          "photoCollectorToResizer": "FROM /messages/modules/photoCollector/outputs/photo INTO BrokeredEndpoint(\"/modules/photoFunctions/inputs/resizer\")"
+          "photoCollectorToResizer": "FROM /messages/modules/photoCollector/outputs/photo INTO BrokeredEndpoint(\"/modules/photoFunctions/inputs/resizer\")",
+          "resizerToCloud": "FROM /messages/modules/photoFunctions/outputs/imageInfo INTO $upstream)"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200

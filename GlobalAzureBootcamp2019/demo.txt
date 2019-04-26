@@ -1,3 +1,6 @@
+device-manual
+$env:IOT_DEVICE_CONNSTR="HostName=gab19.azure-devices.net;DeviceId=device-manual;SharedAccessKey=z51NgqOorp0bc+DB0hfwZrfVg9ST9D9iJgjmLKaA5nU="
+
 **** TEST DEPLOY ***
 
 microsoft/dotnet-samples:aspnetapp
@@ -11,6 +14,31 @@ microsoft/dotnet-samples:aspnetapp
       "80/tcp": [
         {
           "HostPort": "8000"
+        }
+      ]
+    }
+  }
+}
+
+image: mcr.microsoft.com/mssql/server:latest
+
+{
+  "Env": [
+    "ACCEPT_EULA=Y",
+    "SA_PASSWORD=Strong!Passw0rd"
+  ],
+  "HostConfig": {
+    "Mounts": [
+      {
+        "Target": "/var/opt/mssql",
+        "Source": "sqlVolume",
+        "Type": "volume"
+      }
+    ],
+    "PortBindings": {
+      "1433/tcp": [
+        {
+          "HostPort": "1401"
         }
       ]
     }
