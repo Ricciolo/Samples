@@ -60,3 +60,21 @@ curl --header "Content-Type: application/json" --request POST --data '{"inputNam
 
 *** STORAGE BLOB ***
 DefaultEndpointsProtocol=http;BlobEndpoint=http://localhost:11002/photostorage;AccountName=photostorage;AccountKey=rPB6X4iBnQsQHg+lP+H0t9Y13WypkbISU0tCEx6J9LgKBH9P1+hMEmn1shdW50XAMYcQQ8E9WyaT7znFpAwnoA==
+
+
+*** TWIN ***
+"configuration": {
+        "ttlSettings": {
+          "ttlOn": true,
+          "timeToLiveInMinutes": 60
+        },
+      "tieringSettings": {
+        "tieringOn": true,
+        "backlogPolicy": "OldestFirst",
+        "remoteStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=gab19stg;AccountKey=6I/Ca4ewic20fHHn7UUPw+VzQwujk85I9YTDRnODctEAPMb3ttTKvSH5eC2gsqwhMwMCsRZQO47420mXTjjxzA==;EndpointSuffix=core.windows.net",
+        "tieredContainers": {
+          "photos": {
+            "target": "photos"
+          }
+        }
+      }
