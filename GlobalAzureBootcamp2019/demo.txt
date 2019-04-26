@@ -1,6 +1,9 @@
 device-manual
 $env:IOT_DEVICE_CONNSTR="HostName=gab19.azure-devices.net;DeviceId=device-manual;SharedAccessKey=z51NgqOorp0bc+DB0hfwZrfVg9ST9D9iJgjmLKaA5nU="
 
+device-1
+$env:IOT_DEVICE_CONNSTR="HostName=gab19.azure-devices.net;DeviceId=device-1;SharedAccessKey=IVdyTmJIoE5d9bIuS6EmuipLSe1LJwNXb5yOPhJ21k4="
+
 docker login gab19.azurecr.io
 gab19
 nxAWt87CeaIjyXQdZtjm42r/KlNQ6RSW
