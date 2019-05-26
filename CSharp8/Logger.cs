@@ -10,17 +10,21 @@ namespace Demo
             logger1.Log("ciao!");
 
             ConsoleLogger logger2 = new ConsoleLogger();
-            // logger2.Log("ciao2!")
+            // Non compila!
+            // logger2.Log("ciao2!");
+
+            // Membro visibile perché implementato su ConsoleLogger
+            Console.WriteLine(logger2.DefaultLevel);
         }
     }
 
     interface ILogger
     {
         void Log(LogLevel level, string message);
-
-        LogLevel DefaultLevel => LogLevel.Information;
         void Log(string message) => Log(DefaultLevel, message);
         void Log(Exception ex) => Log(LogLevel.Error, ex.ToString());
+
+        LogLevel DefaultLevel => LogLevel.Information;
     }
 
     class ConsoleLogger : ILogger

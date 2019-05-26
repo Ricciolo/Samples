@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Demo
         }
 
         public async Task Sample2()
-        {          
+        {
             await foreach (string txt in GetFilesAsync(@"c:\temp", "*.txt"))
             {
                 Console.WriteLine(txt.Length);
@@ -45,8 +46,8 @@ namespace Demo
             {
                 foreach (var path in Directory.EnumerateFiles(dir, searchPattern))
                 {
-                    using Stream stream = File.OpenRead(path);
-                    using StreamReader reader = new StreamReader(stream);
+                    await using Stream stream = File.OpenRead(path);
+                    using var reader = new StreamReader(stream);
 
                     string content = await reader.ReadToEndAsync();
                     yield return content;
@@ -60,20 +61,13 @@ namespace Demo
 
         private IEnumerable<string> GetFiles(string dir, string searchPattern)
         {
-            try
+            foreach (var path in Directory.EnumerateFiles(dir, searchPattern))
             {
-                foreach (var path in Directory.EnumerateFiles(dir, searchPattern))
-                {
-                    using Stream stream = File.OpenRead(path);
-                    using StreamReader reader = new StreamReader(stream);
+                using Stream stream = File.OpenRead(path);
+                using StreamReader reader = new StreamReader(stream);
 
-                    string content = reader.ReadToEnd();
-                    yield return content;
-                }
-            }
-            finally
-            {
-                // qualcosa
+                string content = reader.ReadToEnd();
+                yield return content;
             }
         }
     }

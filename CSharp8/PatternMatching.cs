@@ -28,7 +28,7 @@ namespace Demo
                     return "Piovoso";
                 default:
                     return "Indefinito";
-            };
+            }
         }
 
         static string Sample1(Weather w) =>
