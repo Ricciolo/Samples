@@ -23,8 +23,17 @@ namespace Demo
             // Forza, Inter
             string[] c = words[..2];
 
-            Index i = ^2;
-            Range r = 0..2;
+            // Posizione 2
+            Index i1 = 2;
+            // Posizione Fine-1
+            Index i2 = ^1;
+
+            // Da 1 a 3
+            Range r1 = 1..3;
+            // Da 0 a 3
+            Range r2 = ..2;
+            // Da 2 fino alla fine
+            Range r3 = 2..;
         }
     }
 }
