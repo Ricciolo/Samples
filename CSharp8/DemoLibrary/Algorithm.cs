@@ -4,7 +4,9 @@ namespace DemoLibrary
 {
     public static class Algorithm
     {
-        public static string Run()
+        public static string? Type { get; set; }
+
+        public static string? Run()
         {
             return null;
         }

@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿//#nullable disable
 
 using System;
 using System.Collections.Generic;
@@ -10,15 +10,19 @@ namespace Demo
     {
         public NullableTypes()
         {
+            // Creo un nuovo ordine
             var order = new Order();
             Console.WriteLine($"Order {order.Id.ToUpper()}");
 
+            // Aggiungo una riga
             var item = new OrderItem(12);
             order.Items.Add(item);
             Console.WriteLine(item.GetFormattedAmount());
 
+            string type = DemoLibrary.Algorithm.Type;
+            
             string result = DemoLibrary.Algorithm.Run();
-            Console.WriteLine(result?.ToUpper());
+            Console.WriteLine(result.ToUpper());
         }
     }
 
@@ -40,13 +44,15 @@ namespace Demo
 
         public decimal? UnitPrice { get; set; }
 
-        public string GetFormattedAmount()
+        public string? GetFormattedAmount()
         {
             if (!UnitPrice.HasValue) return null;
 
             return (UnitPrice.Value * Quantity).ToString("C");
         }
     }
+
+
 
     public class Order2
     {
