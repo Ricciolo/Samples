@@ -7,7 +7,7 @@ namespace Demo
         LoggerProgram()
         {
             ILogger logger1 = new ConsoleLogger();
-            logger1.Log("ciao!");
+            //logger1.Log("ciao!");
 
             ConsoleLogger logger2 = new ConsoleLogger();
             // Non compila!
@@ -18,7 +18,20 @@ namespace Demo
         }
     }
 
-    interface ILogger
+    public interface ILogger
+    {
+        void Log(LogLevel level, string message);
+    }
+
+    public static class LoggerExtensions
+    {
+        public static void Log(this ILogger logger, Exception ex) => logger.Log(LogLevel.Error, ex.ToString());
+    }
+
+
+
+
+    public interface ILogger2
     {
         void Log(LogLevel level, string message);
         void Log(string message) => Log(DefaultLevel, message);

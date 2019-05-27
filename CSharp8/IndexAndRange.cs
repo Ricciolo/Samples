@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Demo
 {
@@ -13,6 +14,8 @@ namespace Demo
                     "Abbasso",
                     "Milan"
                };
+
+            IReadOnlyList<string> w = words;
 
             // Abbasso, Milan
             string[] a = words[^2..];
