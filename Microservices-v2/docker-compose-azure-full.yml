@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+  catalog:
+    image: plansoft.azurecr.io/catalog
+    build:
+      context: .
+      dockerfile: Catalog/Catalog.WebApi/Dockerfile
+    environment:
+      basePath: /catalog
+      Cqrs__RabbitMqConnectionString: "amqp://guest:guest@bus:5672"
+      Cqrs__SqlServerConnectionString: "Data Source=mssql;Initial Catalog=Catalog;user=sa;password=P@assword;MultipleActiveResultSets=True"
+      ConnectionStrings__SqlServer: "Data Source=mssql;Initial Catalog=Catalog;user=sa;password=P@assword;MultipleActiveResultSets=True"
+    restart: always
+    depends_on:
+      - bus
+      - mssql
+
+  mssql:
+    image: "microsoft/mssql-server-linux"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+      SA_PASSWORD: "P@assword"
+    volumes:
+      - mssql:/var/opt/mssql
+    restart: always
+
+  bus:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+    restart: always
+
+  frontdoor:
+    image: plansoft.azurecr.io/frontdoor
+    build:
+      context: .
+      dockerfile: FrontDoor/Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+
+volumes:
+  rabbitmq:
+  mssql:
