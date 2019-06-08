@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-using Industria4.Cqrs.Messaging;
+using Muuvis.Cqrs.Messaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Industria4.Cqrs.Json
+namespace Muuvis.Cqrs.Json
 {
     /// <summary>
     /// Custom contract resolver for IMessage

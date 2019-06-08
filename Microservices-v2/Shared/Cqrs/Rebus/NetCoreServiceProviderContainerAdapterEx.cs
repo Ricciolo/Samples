@@ -13,7 +13,7 @@ using Rebus.Handlers;
 using Rebus.ServiceProvider;
 using Rebus.Transport;
 
-namespace Industria4.Cqrs.Rebus
+namespace Muuvis.Cqrs.Rebus
 {
     /// <summary>
     /// Implementation of <see cref="IContainerAdapter"/> that is backed by a ServiceProvider

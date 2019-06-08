@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Industria4.Http</AssemblyName>
-    <RootNamespace>Industria4.Http</RootNamespace>
+    <AssemblyName>Muuvis.Http</AssemblyName>
+    <RootNamespace>Muuvis.Http</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

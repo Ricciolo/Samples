@@ -1,4 +1,4 @@
-﻿namespace Industria4.Logging
+﻿namespace Muuvis.Logging
 {
     public static class Constants
     {

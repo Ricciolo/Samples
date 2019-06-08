@@ -1,7 +1,7 @@
-﻿using Industria4.Cqrs.Messaging;
-using Industria4.Cqrs.Messaging.Commands;
-using Industria4.Cqrs.Messaging.Events;
-using Industria4.Cqrs.Rebus;
+﻿using Muuvis.Cqrs.Messaging;
+using Muuvis.Cqrs.Messaging.Commands;
+using Muuvis.Cqrs.Messaging.Events;
+using Muuvis.Cqrs.Rebus;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Industria4.Web.Cqrs.Filters
+namespace Muuvis.Web.Cqrs.Filters
 {
 
     /// <summary>

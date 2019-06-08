@@ -6,11 +6,11 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Industria4.DomainModel;
-using Industria4.Repository;
+using Muuvis.DomainModel;
+using Muuvis.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Industria4.EntityFramework.Repository
+namespace Muuvis.EntityFramework.Repository
 {
 	/// <summary>
 	///     Base repository based on <see cref="DbContext" /> which map entity to a data model

@@ -1,4 +1,4 @@
-﻿namespace Industria4.DomainModel
+﻿namespace Muuvis.DomainModel
 {
     /// <summary>
     ///     Represents an entity

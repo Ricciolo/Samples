@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Industria4.DomainModel;
-using Industria4.Repository;
+using Muuvis.DomainModel;
+using Muuvis.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Industria4.EntityFramework.Repository
+namespace Muuvis.EntityFramework.Repository
 {
     /// <summary>
     ///     Base repository implementation based on <see cref="DbContext" /> dedicated to a specific type

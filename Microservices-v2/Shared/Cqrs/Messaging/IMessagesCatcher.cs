@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Industria4.Cqrs.Messaging
+namespace Muuvis.Cqrs.Messaging
 {
     public interface IMessagesCatcher
     {

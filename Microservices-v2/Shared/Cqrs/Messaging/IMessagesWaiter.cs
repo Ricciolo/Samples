@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Industria4.Cqrs.Messaging
+namespace Muuvis.Cqrs.Messaging
 {
     public interface IMessagesWaiter
     {

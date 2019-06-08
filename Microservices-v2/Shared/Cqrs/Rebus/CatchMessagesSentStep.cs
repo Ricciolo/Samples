@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Industria4.Cqrs.Messaging;
+using Muuvis.Cqrs.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using Rebus.Config;
 using Rebus.Messages;
 using Rebus.Pipeline;
 using Rebus.Transport;
 
-namespace Industria4.Cqrs.Rebus
+namespace Muuvis.Cqrs.Rebus
 {
     public class CatchMessagesSentStep : IOutgoingStep
     {

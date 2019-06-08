@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Industria4.Depedencies
+namespace Muuvis.Depedencies
 {
     public static class DepdendenciesExtensions
     {

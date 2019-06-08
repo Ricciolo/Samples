@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Industria4.Cqrs.Messaging.Commands;
+using Muuvis.Cqrs.Messaging.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using Rebus.Bus;
 using Rebus.Logging;
@@ -11,7 +11,7 @@ using Rebus.Retry.Simple;
 using Rebus.Serialization;
 using Rebus.Transport;
 
-namespace Industria4.Cqrs.Rebus
+namespace Muuvis.Cqrs.Rebus
 {
     internal class CommandsErrorHandler : IErrorHandler, IInitializable
     {

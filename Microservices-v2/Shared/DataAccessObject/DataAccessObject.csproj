@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Industria4.DataAccessObject</AssemblyName>
-    <RootNamespace>Industria4.DataAccessObject</RootNamespace>
+    <AssemblyName>Muuvis.DataAccessObject</AssemblyName>
+    <RootNamespace>Muuvis.DataAccessObject</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

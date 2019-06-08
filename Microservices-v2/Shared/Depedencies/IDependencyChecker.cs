@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Industria4.Depedencies
+namespace Muuvis.Depedencies
 {
     public interface IDependencyChecker
     {

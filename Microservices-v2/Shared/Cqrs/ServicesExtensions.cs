@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Industria4;
-using Industria4.Cqrs;
-using Industria4.Cqrs.Json;
-using Industria4.Cqrs.Messaging;
-using Industria4.Cqrs.Rebus;
+using Muuvis;
+using Muuvis.Cqrs;
+using Muuvis.Cqrs.Json;
+using Muuvis.Cqrs.Messaging;
+using Muuvis.Cqrs.Rebus;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;

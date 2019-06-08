@@ -1,6 +1,6 @@
-﻿using Industria4.DomainModel;
+﻿using Muuvis.DomainModel;
 
-namespace Industria4.Cqrs.Messaging.Events
+namespace Muuvis.Cqrs.Messaging.Events
 {
     /// <summary>
     ///     Represents a CQRS event dedicated to an <see cref="IEntity" />

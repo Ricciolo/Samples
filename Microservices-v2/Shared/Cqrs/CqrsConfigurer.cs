@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Industria4.Cqrs.Messaging.Commands;
-using Industria4.Cqrs.Messaging.Events;
+using Muuvis.Cqrs.Messaging.Commands;
+using Muuvis.Cqrs.Messaging.Events;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Rebus.Bus;
@@ -20,7 +20,7 @@ using Rebus.Timeouts;
 using Rebus.Transport;
 using Rebus.Transport.InMem;
 
-namespace Industria4.Cqrs
+namespace Muuvis.Cqrs
 {
 	internal class CqrsConfigurer : ICqrsConfigurer
 	{

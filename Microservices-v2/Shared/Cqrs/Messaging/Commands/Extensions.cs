@@ -4,7 +4,7 @@ using System.Text;
 using Rebus.Pipeline;
 using Rebus.Transport;
 
-namespace Industria4.Cqrs.Messaging.Commands
+namespace Muuvis.Cqrs.Messaging.Commands
 {
     /// <summary>
     /// Extensions dedicated to the commands

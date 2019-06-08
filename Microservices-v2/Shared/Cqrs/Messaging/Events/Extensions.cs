@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Industria4.Cqrs.Messaging.Commands;
-using Industria4.DomainModel;
+using Muuvis.Cqrs.Messaging.Commands;
+using Muuvis.DomainModel;
 
-namespace Industria4.Cqrs.Messaging.Events
+namespace Muuvis.Cqrs.Messaging.Events
 {
     /// <summary>
     /// Extensions methods for creating events

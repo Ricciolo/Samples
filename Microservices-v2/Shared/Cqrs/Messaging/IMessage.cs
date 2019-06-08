@@ -1,4 +1,4 @@
-﻿namespace Industria4.Cqrs.Messaging
+﻿namespace Muuvis.Cqrs.Messaging
 {
     /// <summary>
     /// Represents a bus message

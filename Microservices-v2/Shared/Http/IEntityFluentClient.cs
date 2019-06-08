@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Industria4.Http
+namespace Muuvis.Http
 {
     /// <summary>
     /// Typed version of fluent client

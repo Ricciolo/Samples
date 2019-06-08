@@ -4,7 +4,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Industria4.EntityFramework.DataAccessObject
+namespace Muuvis.EntityFramework.DataAccessObject
 {
     /// <summary>
     ///     Base object for querying model using <see cref="DbContext" />. The implementation support a data model and uses
@@ -23,9 +23,9 @@ namespace Industria4.EntityFramework.DataAccessObject
             Mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        protected override IQueryable<TReadModel> Query => Context
-            .Set<TDataModel>()
-            .ProjectTo<TReadModel>(Mapper.ConfigurationProvider);
+        protected override IQueryable<TReadModel> Query => Set.ProjectTo<TReadModel>(Mapper.ConfigurationProvider);
+
+        protected virtual IQueryable<TDataModel> Set => Context.Set<TDataModel>();
 
         public IMapper Mapper { get; }
 

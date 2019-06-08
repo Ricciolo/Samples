@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Microsoft.Extensions.Logging;
 
-namespace Industria4
+namespace Muuvis
 {
     public class GenericException : Exception
     {

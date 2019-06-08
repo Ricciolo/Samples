@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Industria4.Http
+namespace Muuvis.Http
 {
 	public class ServiceOptions
 	{

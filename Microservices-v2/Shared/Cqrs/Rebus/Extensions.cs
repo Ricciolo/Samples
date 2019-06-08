@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Industria4.Cqrs.Messaging.Commands;
-using Industria4.Cqrs.Messaging.Events;
-using Industria4.Cqrs.Rebus;
-using Industria4.DomainModel;
+using Muuvis.Cqrs.Messaging.Commands;
+using Muuvis.Cqrs.Messaging.Events;
+using Muuvis.Cqrs.Rebus;
+using Muuvis.DomainModel;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Rebus.Exceptions;

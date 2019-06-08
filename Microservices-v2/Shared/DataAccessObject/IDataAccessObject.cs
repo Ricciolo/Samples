@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Industria4.DataAccessObject
+namespace Muuvis.DataAccessObject
 {
     /// <summary>
     ///     Represents an object for querying model

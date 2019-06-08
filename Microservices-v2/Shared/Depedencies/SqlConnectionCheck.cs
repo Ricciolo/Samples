@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace Industria4.Depedencies
+namespace Muuvis.Depedencies
 {
     /// <summary>
     /// Chech if connection to a SQL Server is available

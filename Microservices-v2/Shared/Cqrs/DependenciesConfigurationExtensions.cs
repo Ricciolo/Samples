@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using Industria4.Depedencies;
+using Muuvis.Depedencies;
 
 // ReSharper disable once CheckNamespace
-namespace Industria4.Web
+namespace Muuvis.Web
 {
     public static class DependenciesConfigurationExtensions
     {

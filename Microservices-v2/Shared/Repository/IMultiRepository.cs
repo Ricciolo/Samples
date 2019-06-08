@@ -1,8 +1,8 @@
-﻿using Industria4.DomainModel;
+﻿using Muuvis.DomainModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Industria4.Repository
+namespace Muuvis.Repository
 {
     /// <summary>
     ///     Represents the repository pattern for generic objects

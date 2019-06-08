@@ -1,4 +1,4 @@
-﻿namespace Industria4.Cqrs.Messaging.Events
+﻿namespace Muuvis.Cqrs.Messaging.Events
 {
     /// <summary>
     /// Base implementation of event

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MassTransit;
 
-namespace Industria4.DomainModel
+namespace Muuvis.DomainModel
 {
     public static class IdGenerator
     {

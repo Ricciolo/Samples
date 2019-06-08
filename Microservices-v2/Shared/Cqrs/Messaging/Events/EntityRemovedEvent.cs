@@ -1,6 +1,6 @@
-﻿using Industria4.Cqrs.Messaging.Commands;
+﻿using Muuvis.Cqrs.Messaging.Commands;
 
-namespace Industria4.Cqrs.Messaging.Events
+namespace Muuvis.Cqrs.Messaging.Events
 {
     /// <summary>
     ///     Represents a removed event for a specific command

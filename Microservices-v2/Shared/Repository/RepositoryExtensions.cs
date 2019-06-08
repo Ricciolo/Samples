@@ -1,7 +1,7 @@
-﻿using Industria4.DomainModel;
+﻿using Muuvis.DomainModel;
 using System.Threading.Tasks;
 
-namespace Industria4.Repository
+namespace Muuvis.Repository
 {
     public static class RepositoryExtensions
     {

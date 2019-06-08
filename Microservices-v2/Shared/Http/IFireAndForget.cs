@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Industria4.Http
+namespace Muuvis.Http
 {
     /// <summary>
     /// Allows the control of the operation called

@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Rebus.Handlers;
 
-namespace Industria4.Cqrs.Messaging
+namespace Muuvis.Cqrs.Messaging
 {
     public class MessagesWaiterBase : IMessagesWaiter
     {

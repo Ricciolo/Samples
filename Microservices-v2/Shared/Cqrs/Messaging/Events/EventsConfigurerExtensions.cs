@@ -1,10 +1,10 @@
-﻿using Industria4.Cqrs.Messaging.Commands;
-using Industria4.Cqrs.Messaging.Events;
+﻿using Muuvis.Cqrs.Messaging.Commands;
+using Muuvis.Cqrs.Messaging.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Industria4.Cqrs
+namespace Muuvis.Cqrs
 {
     public static class EventsConfigurerExtensions
     {

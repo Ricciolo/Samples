@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Industria4.Cqrs
+namespace Muuvis.Cqrs
 {
     public interface IEntityType
     {

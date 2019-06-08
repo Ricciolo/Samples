@@ -1,4 +1,4 @@
-﻿namespace Industria4.Cqrs
+﻿namespace Muuvis.Cqrs
 {
     /// <summary>
     ///     Options containing connection strings and service bus settings

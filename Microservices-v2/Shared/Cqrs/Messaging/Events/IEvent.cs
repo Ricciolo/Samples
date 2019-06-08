@@ -1,4 +1,4 @@
-﻿namespace Industria4.Cqrs.Messaging.Events
+﻿namespace Muuvis.Cqrs.Messaging.Events
 {
     /// <summary>
     /// Represents a CQRS event

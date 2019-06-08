@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Industria4.Cqrs</AssemblyName>
-    <RootNamespace>Industria4.Cqrs</RootNamespace>
+    <AssemblyName>Muuvis.Cqrs</AssemblyName>
+    <RootNamespace>Muuvis.Cqrs</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

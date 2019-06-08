@@ -1,8 +1,8 @@
-﻿using Industria4.Cqrs.Messaging.Commands;
-using Industria4.Cqrs.Messaging.Events;
+﻿using Muuvis.Cqrs.Messaging.Commands;
+using Muuvis.Cqrs.Messaging.Events;
 using Rebus.Handlers;
 
-namespace Industria4.Cqrs
+namespace Muuvis.Cqrs
 {
     /// <summary>
     ///     Interfaces used for configuring service bus

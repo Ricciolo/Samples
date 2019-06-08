@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Rebus.Pipeline;
 using Rebus.Transport;
 
-namespace Industria4.Cqrs.Rebus
+namespace Muuvis.Cqrs.Rebus
 {
     public class ServiceProviderStep : IOutgoingStep, IIncomingStep
     {

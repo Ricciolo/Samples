@@ -25,21 +25,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging", "Shared\Logging\L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Shared\Repository\Repository.csproj", "{0D27B6D4-A26F-4D85-AEEC-E0282277A303}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recipes", "Recipes", "{5BD0C6E5-6B3A-400D-A8C6-5FFC866D219A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{5BD0C6E5-6B3A-400D-A8C6-5FFC866D219A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recipes.Cqrs", "Recipes\Recipes.Cqrs\Recipes.Cqrs.csproj", "{3C6E7EAC-BDF3-451B-8CCA-C8ECE249E20A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Cqrs", "Catalog\Catalog.Cqrs\Catalog.Cqrs.csproj", "{3C6E7EAC-BDF3-451B-8CCA-C8ECE249E20A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recipes.Cqrs.Handlers", "Recipes\Recipes.Cqrs.Handlers\Recipes.Cqrs.Handlers.csproj", "{423B6216-C0E9-4CE7-92E4-BE2F12A2E26B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Cqrs.Handlers", "Catalog\Catalog.Cqrs.Handlers\Catalog.Cqrs.Handlers.csproj", "{423B6216-C0E9-4CE7-92E4-BE2F12A2E26B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recipes.DomainModel", "Recipes\Recipes.DomainModel\Recipes.DomainModel.csproj", "{C515B8BC-BD99-4E56-BD79-7F684EBF2648}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.DomainModel", "Catalog\Catalog.DomainModel\Catalog.DomainModel.csproj", "{C515B8BC-BD99-4E56-BD79-7F684EBF2648}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recipes.ReadModel", "Recipes\Recipes.ReadModel\Recipes.ReadModel.csproj", "{E498514F-5A67-4EC8-A11E-349337D6AF05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.ReadModel", "Catalog\Catalog.ReadModel\Catalog.ReadModel.csproj", "{E498514F-5A67-4EC8-A11E-349337D6AF05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recipes.WebApi", "Recipes\Recipes.WebApi\Recipes.WebApi.csproj", "{210B7E09-0CB0-4524-9976-BF472CC65440}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.WebApi", "Catalog\Catalog.WebApi\Catalog.WebApi.csproj", "{210B7E09-0CB0-4524-9976-BF472CC65440}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recipes.Sqlite", "Recipes\Recipes.Sqlite\Recipes.Sqlite.csproj", "{652398B4-3310-4D58-B89F-CB6DBE3BB6A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Depedencies", "Shared\Depedencies\Depedencies.csproj", "{0E89460D-92F7-4773-AD3C-3160D9040CF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Depedencies", "Shared\Depedencies\Depedencies.csproj", "{0E89460D-92F7-4773-AD3C-3160D9040CF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.EntityFramework", "Catalog\Catalog.EntityFramework\Catalog.EntityFramework.csproj", "{17F0AA3B-4B0A-4365-B27B-EC358A4321D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,14 +107,14 @@ Global
 		{210B7E09-0CB0-4524-9976-BF472CC65440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{210B7E09-0CB0-4524-9976-BF472CC65440}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{210B7E09-0CB0-4524-9976-BF472CC65440}.Release|Any CPU.Build.0 = Release|Any CPU
-		{652398B4-3310-4D58-B89F-CB6DBE3BB6A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{652398B4-3310-4D58-B89F-CB6DBE3BB6A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{652398B4-3310-4D58-B89F-CB6DBE3BB6A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{652398B4-3310-4D58-B89F-CB6DBE3BB6A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0E89460D-92F7-4773-AD3C-3160D9040CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E89460D-92F7-4773-AD3C-3160D9040CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E89460D-92F7-4773-AD3C-3160D9040CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E89460D-92F7-4773-AD3C-3160D9040CF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17F0AA3B-4B0A-4365-B27B-EC358A4321D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17F0AA3B-4B0A-4365-B27B-EC358A4321D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17F0AA3B-4B0A-4365-B27B-EC358A4321D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17F0AA3B-4B0A-4365-B27B-EC358A4321D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,8 +135,8 @@ Global
 		{C515B8BC-BD99-4E56-BD79-7F684EBF2648} = {5BD0C6E5-6B3A-400D-A8C6-5FFC866D219A}
 		{E498514F-5A67-4EC8-A11E-349337D6AF05} = {5BD0C6E5-6B3A-400D-A8C6-5FFC866D219A}
 		{210B7E09-0CB0-4524-9976-BF472CC65440} = {5BD0C6E5-6B3A-400D-A8C6-5FFC866D219A}
-		{652398B4-3310-4D58-B89F-CB6DBE3BB6A2} = {5BD0C6E5-6B3A-400D-A8C6-5FFC866D219A}
 		{0E89460D-92F7-4773-AD3C-3160D9040CF4} = {D890E64F-F628-4C6F-8735-ED1F03E4833C}
+		{17F0AA3B-4B0A-4365-B27B-EC358A4321D8} = {5BD0C6E5-6B3A-400D-A8C6-5FFC866D219A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {084DE146-273B-45F5-BF64-9324E07712CB}

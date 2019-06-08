@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Industria4.Depedencies
+namespace Muuvis.Depedencies
 {
     public class DependenciesConfiguration
     {

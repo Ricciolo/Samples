@@ -1,8 +1,8 @@
-﻿using Industria4.DomainModel;
+﻿using Muuvis.DomainModel;
 using System;
 using System.Threading.Tasks;
 
-namespace Industria4.Repository
+namespace Muuvis.Repository
 {
     /// <summary>
     /// Base implementation of repository which takes care of casting object to a specific type

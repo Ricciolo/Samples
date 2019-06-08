@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Industria4.Cqrs.Messaging;
+using Muuvis.Cqrs.Messaging;
 using Rebus.Bus;
 using Rebus.Messages;
 using Rebus.Pipeline;
 
-namespace Industria4.Cqrs.Rebus
+namespace Muuvis.Cqrs.Rebus
 {
     /// <summary>
     /// Automatically set message id and correlation headers

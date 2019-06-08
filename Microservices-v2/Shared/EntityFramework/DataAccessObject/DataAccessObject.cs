@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Industria4.DataAccessObject;
+using Muuvis.DataAccessObject;
 using Microsoft.EntityFrameworkCore;
 
-namespace Industria4.EntityFramework.DataAccessObject
+namespace Muuvis.EntityFramework.DataAccessObject
 {
     /// <summary>
     ///     Base object for querying model using <see cref="DbContext" />

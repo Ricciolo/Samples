@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Rebus.Bus;
 
-namespace Industria4.Cqrs.Messaging
+namespace Muuvis.Cqrs.Messaging
 {
     public class MessagesCatcher : IMessagesCatcher
     {

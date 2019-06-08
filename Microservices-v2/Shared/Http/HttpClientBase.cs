@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Pathoschild.Http.Client.Extensibility;
 
-namespace Industria4.Http
+namespace Muuvis.Http
 {
 	public abstract class HttpClientBase : IDisposable, IFireAndForget
     {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace Industria4.Depedencies
+namespace Muuvis.Depedencies
 {
     /// <summary>
     /// Check if a TCP connection to a host works

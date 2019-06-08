@@ -1,4 +1,4 @@
-﻿namespace Industria4.Cqrs.Messaging.Commands
+﻿namespace Muuvis.Cqrs.Messaging.Commands
 {
     /// <summary>
     /// Represents a CQRS command

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Industria4.Web;
-using Industria4.Depedencies;
+using Muuvis.Web;
+using Muuvis.Depedencies;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Hosting
 {
     /// <summary>

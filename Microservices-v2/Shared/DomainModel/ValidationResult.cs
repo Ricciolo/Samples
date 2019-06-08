@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Industria4.DomainModel
+namespace Muuvis.DomainModel
 {
     /// <summary>
     ///     Represents the result of a validation

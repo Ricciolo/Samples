@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Industria4.Depedencies;
+using Muuvis.Depedencies;
 
-namespace Industria4.Web
+namespace Muuvis.Web
 {
     /// <summary>
     /// IWebHost implementation which wraps another one and checks dependencies before to start the original implementation
