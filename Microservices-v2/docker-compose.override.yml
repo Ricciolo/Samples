@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  catalog:
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      Cqrs__RabbitMqConnectionString: "amqp://guest:guest@bus:5672"
+      Cqrs__SqlServerConnectionString: "Data Source=mssql;Initial Catalog=Catalog;user=sa;password=P@assword;MultipleActiveResultSets=True"
+      ConnectionStrings__SqlServer: "Data Source=mssql;Initial Catalog=Catalog;user=sa;password=P@assword;MultipleActiveResultSets=True"
+    ports:
+      - "30191:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  mssql:
+    environment:
+      SA_PASSWORD: "P@assword"
+    ports:
+      - "31433:1433"
+
+  bus:
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    ports:
+      - "15672:15672"
+
+  frontdoor:
+    ports:
+      - "30190:80"

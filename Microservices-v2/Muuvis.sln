@@ -43,6 +43,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.EntityFramework", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Http", "Catalog\Catalog.Http\Catalog.Http.csproj", "{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{42AEA22A-C99B-4FFC-840E-23ADE7BC9F4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontDoor", "FrontDoor", "{1872E1BC-68EF-4036-AF82-A2CE3F329D51}"
+	ProjectSection(SolutionItems) = preProject
+		FrontDoor\Dockerfile = FrontDoor\Dockerfile
+		FrontDoor\nginx-custom.conf = FrontDoor\nginx-custom.conf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +129,10 @@ Global
 		{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42AEA22A-C99B-4FFC-840E-23ADE7BC9F4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42AEA22A-C99B-4FFC-840E-23ADE7BC9F4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42AEA22A-C99B-4FFC-840E-23ADE7BC9F4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42AEA22A-C99B-4FFC-840E-23ADE7BC9F4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

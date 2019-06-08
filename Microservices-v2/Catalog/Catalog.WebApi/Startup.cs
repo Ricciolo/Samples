@@ -1,14 +1,18 @@
-﻿using Muuvis.Cqrs;
+﻿using System.Linq;
+using Muuvis.Cqrs;
 using Muuvis.Web.Cqrs.Filters;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Converters;
+using NSwag;
+using NSwag.AspNetCore;
 
 [assembly: ApiConventionType(typeof(DefaultApiConventions))]
 
@@ -72,6 +76,8 @@ namespace Muuvis.Catalog.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
+            app.UsePathBase();
+
             if (HostingEnvironment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -83,7 +89,7 @@ namespace Muuvis.Catalog.WebApi
             }
 
             app.UseSwagger();
-            app.UseSwaggerUi3();
+            app.UseSwaggerUi3(s => s.HandlePathBase(Configuration));
 
             app.UseMvc(o =>
             {

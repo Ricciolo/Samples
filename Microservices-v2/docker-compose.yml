@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  catalog:
+    image: ${DOCKER_REGISTRY-}catalog
+    build:
+      context: .
+      dockerfile: Catalog/Catalog.WebApi/Dockerfile
+    environment:
+      basePath: /catalog
+    depends_on:
+      - bus
+      - mssql
+
+  mssql:
+    image: "microsoft/mssql-server-linux"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+    volumes:
+      - mssql:/var/opt/mssql
+    restart: always
+
+  bus:
+    image: "rabbitmq:3-management"
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+    restart: always
+
+  frontdoor:
+    image: ${DOCKER_REGISTRY-}frontdoor
+    build:
+      context: .
+      dockerfile: FrontDoor/Dockerfile
+    restart: always
+
+volumes:
+  rabbitmq:
+  mssql:

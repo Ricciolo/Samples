@@ -5,8 +5,9 @@
     <AssemblyName>Muuvis.Catalog.WebApi</AssemblyName>
     <RootNamespace>Muuvis.Catalog.WebApi</RootNamespace>
     <UserSecretsId>82ba98a3-0374-42b1-a8cb-25a9b6516137</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
