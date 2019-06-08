@@ -1,20 +1,14 @@
 ﻿using Muuvis.Cqrs;
-using Muuvis.Web;
 using Muuvis.Web.Cqrs.Filters;
-using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OData;
-using Microsoft.OData.Edm;
 using Newtonsoft.Json.Converters;
-using Swashbuckle.AspNetCore.Swagger;
 
 [assembly: ApiConventionType(typeof(DefaultApiConventions))]
 
@@ -59,19 +53,17 @@ namespace Muuvis.Catalog.WebApi
             services.AddSingleton<WebApiMapper>();
 
             services.AddOData();
+
             services.AddHttpContextAccessor();
             services.AddMvc(o => o.Filters.Add(typeof(WaitCommandEventsAttribute)))
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .SetODataFormatters()
-                .AddJsonOptions(o =>
-                {
-                    o.SerializerSettings.Converters.Add(new StringEnumConverter());
-                });
+                .AddJsonOptions(o => { o.SerializerSettings.Converters.Add(new StringEnumConverter()); })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddSwaggerGen(c =>
+            services.AddOpenApiDocument(s =>
             {
-                c.CustomSchemaIds(x => x.FullName);
-                c.SwaggerDoc("v1", new Info { Title = GetType().Assembly.FullName, Version = "v1" });
+                s.Title = GetType().Assembly.GetName().Name;
+                s.Version = "1.0";
             });
 
             services.AddCors(o => o.AddDefaultPolicy(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
@@ -90,16 +82,13 @@ namespace Muuvis.Catalog.WebApi
                 app.UseCors();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUi3();
+
             app.UseMvc(o =>
             {
                 o.EnableCommonOData();
             });
-
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c =>
-            //{
-            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Recipes");
-            //});
         }
     }
 

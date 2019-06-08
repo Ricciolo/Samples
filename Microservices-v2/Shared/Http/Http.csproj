@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0" />
     <PackageReference Include="Pathoschild.Http.FluentClient" Version="3.2.0" />
-    <PackageReference Include="Microsoft.OData.Client" Version="7.5.4" />
+    <PackageReference Include="Microsoft.OData.Client" Version="7.6.0" />
   </ItemGroup>
 
   <ItemGroup>

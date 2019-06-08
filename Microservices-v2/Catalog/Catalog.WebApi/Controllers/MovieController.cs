@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
@@ -16,35 +17,45 @@ namespace Muuvis.Catalog.WebApi.Controllers
 {
     [Route("v1/[controller]")]
     [ApiController]
-    public class MovieController : Controller
+    public class MovieController : ControllerBase
     {
+        private readonly IBus _bus;
+        private readonly IRepository<Movie> _movieRepository;
+        private readonly IDataAccessObject<MovieRead> _modelDataAccessObject;
+        private readonly IConfigurationProvider _webApiMapper;
+
+        public MovieController(WebApiMapper webApiMapper,
+            IBus bus,
+            IRepository<Movie> movieRepository,
+            IDataAccessObject<MovieRead> modelDataAccessObject)
+        {
+            _bus = bus;
+            _movieRepository = movieRepository;
+            _modelDataAccessObject = modelDataAccessObject;
+            _webApiMapper = webApiMapper.Mapper.ConfigurationProvider;
+        }
+
         [HttpGet("originals")]
         [EnableQuery]
-        public IQueryable<WebApiModels.GetApiModel> GetOriginals(
-            [FromServices] IDataAccessObject<MovieRead> modelDataAccessObject,
-            [FromServices] WebApiMapper webApiMapper)
+        public IQueryable<WebApiModels.GetApiModel> GetOriginals()
         {
-            return modelDataAccessObject
+            return _modelDataAccessObject
                 .Where(m => m.IsOriginal)
-                .ProjectTo<WebApiModels.GetApiModel>(webApiMapper.Mapper.ConfigurationProvider);
+                .ProjectTo<WebApiModels.GetApiModel>(_webApiMapper);
         }
 
         [HttpGet]
         [EnableQuery]
-        public IQueryable<WebApiModels.GetApiModel> Get(
-            [FromServices] IDataAccessObject<MovieRead> modelDataAccessObject,
-            [FromServices] WebApiMapper webApiMapper)
+        public IQueryable<WebApiModels.GetApiModel> Get()
         {
-            return modelDataAccessObject
-                .ProjectTo<WebApiModels.GetApiModel>(webApiMapper.Mapper.ConfigurationProvider);
+            return _modelDataAccessObject
+                .ProjectTo<WebApiModels.GetApiModel>(_webApiMapper);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<WebApiModels.GetSingleApiMovie>> GetSingle(string id,
-            [FromServices] IRepository<Movie> movieRepository
-        )
+        public async Task<ActionResult<WebApiModels.GetSingleApiMovie>> Get(string id)
         {
-            Movie model = await movieRepository.GetAsync(id);
+            Movie model = await _movieRepository.GetAsync(id);
 
             if (model == null) return NotFound();
 
@@ -54,33 +65,25 @@ namespace Muuvis.Catalog.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(
-            WebApiModels.Movie movie,
-            [FromServices] IBus bus)
+        public async Task<IActionResult> Post(WebApiModels.Movie movie)
         {
             string id = IdGenerator.New();
 
-            await bus.Send(movie.GetCommand(id));
+            await _bus.Send(movie.GetCommand(id));
 
-            return Created(Url.Action(nameof(Get), new {id}), id);
+            return CreatedAtAction(nameof(Get), new { id }, id);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(string id,
-            WebApiModels.Movie movie,
-            [FromServices] IBus bus)
+        public async Task Put(string id, WebApiModels.Movie movie)
         {
-            await bus.Send(movie.GetCommand(id));
-
-            return Ok(id);
+            await _bus.Send(movie.GetCommand(id));
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(
-            [FromServices] IBus bus,
-            string id)
+        public async Task<IActionResult> Delete(string id)
         {
-            await bus.Send(new DeleteMovieCommand(id));
+            await _bus.Send(new DeleteMovieCommand(id));
 
             return Ok();
         }

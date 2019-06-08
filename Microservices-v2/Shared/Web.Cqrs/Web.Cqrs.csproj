@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Rebus" Version="4.2.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
   <ItemGroup>
