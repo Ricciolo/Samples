@@ -11,19 +11,17 @@ namespace Muuvis.Catalog.WebApi
     {
         public static void Main(string[] args)
         {
-            CreateBuilder(args)
+            CreateWebHostBuilder(args)
                 .Build()
                 .CheckDependencies(c => c.AddSqlConnectionsCheck().AddRabbitMQCheck())
                 .Run();
         }
 
-        public static IWebHostBuilder CreateBuilder(params string[] args)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
-            IWebHostBuilder webHostBuilder = WebHost.CreateDefaultBuilder(args)
+            return WebHost.CreateDefaultBuilder(args)
                 .UseSerilogWithConfiguration()
                 .UseStartup<Startup>();
-
-            return webHostBuilder;
         }
 
     }

@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Depedencies", "Shared\Deped
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.EntityFramework", "Catalog\Catalog.EntityFramework\Catalog.EntityFramework.csproj", "{17F0AA3B-4B0A-4365-B27B-EC358A4321D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Http", "Catalog\Catalog.Http\Catalog.Http.csproj", "{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{17F0AA3B-4B0A-4365-B27B-EC358A4321D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17F0AA3B-4B0A-4365-B27B-EC358A4321D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17F0AA3B-4B0A-4365-B27B-EC358A4321D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +143,7 @@ Global
 		{210B7E09-0CB0-4524-9976-BF472CC65440} = {5BD0C6E5-6B3A-400D-A8C6-5FFC866D219A}
 		{0E89460D-92F7-4773-AD3C-3160D9040CF4} = {D890E64F-F628-4C6F-8735-ED1F03E4833C}
 		{17F0AA3B-4B0A-4365-B27B-EC358A4321D8} = {5BD0C6E5-6B3A-400D-A8C6-5FFC866D219A}
+		{EA2806FA-1111-42E7-8DE3-B4C752D2C31F} = {5BD0C6E5-6B3A-400D-A8C6-5FFC866D219A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {084DE146-273B-45F5-BF64-9324E07712CB}

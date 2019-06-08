@@ -7,7 +7,7 @@ namespace Muuvis.Http
 	public class ServiceOptions
 	{
 
-        private static readonly Regex Name = new Regex("([^\\.]+)\\.(?=HttpClient)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        private static readonly Regex Name = new Regex("([^\\.]+)\\.(?=Http)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
 		public Dictionary<string, Uri> BaseUri { get; } = new Dictionary<string, Uri>(StringComparer.OrdinalIgnoreCase);
 
