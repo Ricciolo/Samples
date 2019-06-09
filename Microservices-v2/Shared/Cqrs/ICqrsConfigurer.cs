@@ -33,6 +33,13 @@ namespace Muuvis.Cqrs
         ICqrsConfigurer UseRabbitQueue(string queueName);
 
         /// <summary>
+        ///     Configures the bus to use Azure Service Bus
+        /// </summary>
+        /// <param name="queueName"></param>
+        /// <returns></returns>
+        ICqrsConfigurer UseAzureServiceBus(string queueName);
+
+        /// <summary>
         ///     Registers all handlers availables in the same assembly of type T for receiving messages
         /// </summary>
         /// <typeparam name="T"></typeparam>

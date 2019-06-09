@@ -87,7 +87,20 @@ namespace Muuvis.Cqrs
 			return this;
 		}
 
-		public ICqrsConfigurer AddHandlersFromAssemblyOfType<T>() where T : IHandleMessages
+        public ICqrsConfigurer UseAzureServiceBus(string queueName)
+        {
+            _transportAction = t => t.UseAzureServiceBus(Options.AzureServiceBusConnectionString, queueName);
+            //_timeoutAction = s => s.StoreInSqlServer(Options.SqlServerConnectionString, "MessageTimeouts");
+            _sagaAction = s =>
+            {
+                s.StoreInSqlServer(Options.SqlServerConnectionString, "Sagas", "SagasIndex");
+                s.EnforceExclusiveAccess();
+            };
+
+            return this;
+        }
+
+        public ICqrsConfigurer AddHandlersFromAssemblyOfType<T>() where T : IHandleMessages
 		{
 			Services.AutoRegisterHandlersFromAssemblyOf<T>();
 

@@ -10,10 +10,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="Rebus.Async" Version="5.0.0" />
-    <PackageReference Include="Rebus.RabbitMq" Version="4.4.2" />
-    <PackageReference Include="Rebus.Serilog" Version="4.0.0" />
-    <PackageReference Include="Rebus.ServiceProvider" Version="4.0.1" />
-    <PackageReference Include="Rebus.SqlServer" Version="4.0.0" />
+    <PackageReference Include="Rebus.AzureServiceBus" Version="6.0.7" />
+    <PackageReference Include="Rebus.RabbitMq" Version="5.1.2" />
+    <PackageReference Include="Rebus.Serilog" Version="5.0.0" />
+    <PackageReference Include="Rebus.ServiceProvider" Version="4.0.2" />
+    <PackageReference Include="Rebus.SqlServer" Version="5.1.0" />
   </ItemGroup>
 
   <ItemGroup>

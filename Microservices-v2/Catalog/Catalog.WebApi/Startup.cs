@@ -46,9 +46,13 @@ namespace Muuvis.Catalog.WebApi
                 {
                     b.UseCatalogInMemoryQueue();
                 }
-                else
+                else if (Configuration.IsRabbitMqConfigured())
                 {
                     b.UseCatalogRabbitQueue();
+                }
+                else if (Configuration.IsAzureServiceBusConfigured())
+                {
+                    b.UseCatalogAzureServiceBus();
                 }
             });
 

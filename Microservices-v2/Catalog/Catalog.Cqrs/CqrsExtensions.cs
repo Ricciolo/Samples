@@ -15,7 +15,12 @@ namespace Muuvis.Cqrs
 			return configurer.UseRabbitQueue("Catalog");
 		}
 
-		public static ICqrsConfigurer AddCatalogCommandsRoute(this ICqrsConfigurer configurer)
+        public static ICqrsConfigurer UseCatalogAzureServiceBus(this ICqrsConfigurer configurer)
+        {
+            return configurer.UseAzureServiceBus("Catalog");
+        }
+
+        public static ICqrsConfigurer AddCatalogCommandsRoute(this ICqrsConfigurer configurer)
 		{
 			configurer.AddCommandsRouteFromAssemblyOfType<AddOrUpdateMovieCommand>("Catalog");
 			return configurer;

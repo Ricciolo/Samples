@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  catalog:
+    image: plansoft.azurecr.io/catalog
+    build:
+      context: .
+      dockerfile: Catalog/Catalog.WebApi/Dockerfile
+    environment:
+      basePath: /catalog
+      Cqrs__AzureServiceBusConnectionString: "Endpoint=sb://plansoft.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=8yTgS9nyoXPXUqQ32/kiExhWXbcr2aumvwphpWw3TaI="
+      Cqrs__SqlServerConnectionString: "Server=tcp:plansoft.database.windows.net,1433;Initial Catalog=Plansoft;Persist Security Info=False;User ID=plansoftsa;Password=P@ssword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+      ConnectionStrings__SqlServer: "Server=tcp:plansoft.database.windows.net,1433;Initial Catalog=Plansoft;Persist Security Info=False;User ID=plansoftsa;Password=P@ssword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    restart: always
+
+  frontdoor:
+    image: plansoft.azurecr.io/frontdoor
+    build:
+      context: .
+      dockerfile: FrontDoor/Dockerfile
+    restart: always
+    ports:
+      - "80:80"

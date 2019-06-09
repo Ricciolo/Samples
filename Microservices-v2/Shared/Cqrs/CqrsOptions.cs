@@ -7,6 +7,8 @@
     {
         public string RabbitMqConnectionString { get; set; }
 
+        public string AzureServiceBusConnectionString { get; set; }
+
         public string SqlServerConnectionString { get; set; }
 
         public int ServiceBusWorkers { get; set; } = 10;
