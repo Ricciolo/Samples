@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Depedencies", "Shared\Deped
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.EntityFramework", "Catalog\Catalog.EntityFramework\Catalog.EntityFramework.csproj", "{17F0AA3B-4B0A-4365-B27B-EC358A4321D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Http", "Catalog\Catalog.Http\Catalog.Http.csproj", "{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Http", "Catalog\Catalog.Http\Catalog.Http.csproj", "{EA2806FA-1111-42E7-8DE3-B4C752D2C31F}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{42AEA22A-C99B-4FFC-840E-23ADE7BC9F4A}"
 EndProject
@@ -49,6 +49,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontDoor", "FrontDoor", "{
 	ProjectSection(SolutionItems) = preProject
 		FrontDoor\Dockerfile = FrontDoor\Dockerfile
 		FrontDoor\nginx-custom.conf = FrontDoor\nginx-custom.conf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{7362D8AA-1957-49D3-9F59-2651C24AE2FE}"
+	ProjectSection(SolutionItems) = preProject
+		Kubernetes\deployment.yaml = Kubernetes\deployment.yaml
+		Kubernetes\service.yaml = Kubernetes\service.yaml
 	EndProjectSection
 EndProject
 Global

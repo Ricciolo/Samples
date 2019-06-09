@@ -1,0 +1,32 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2
+ARG BUILD_CONFIGURATION=Debug
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV DOTNET_USE_POLLING_FILE_WATCHER=true
+EXPOSE 80
+
+WORKDIR /src
+COPY ["Catalog/Catalog.Cqrs.Handlers/Catalog.Cqrs.Handlers.csproj", "Catalog/Catalog.Cqrs.Handlers/"]
+COPY ["Catalog/Catalog.Cqrs/Catalog.Cqrs.csproj", "Catalog/Catalog.Cqrs/"]
+COPY ["Catalog/Catalog.DomainModel/Catalog.DomainModel.csproj", "Catalog/Catalog.DomainModel/"]
+COPY ["Catalog/Catalog.EntityFramework/Catalog.EntityFramework.csproj", "Catalog/Catalog.EntityFramework/"]
+COPY ["Catalog/Catalog.ReadModel/Catalog.ReadModel.csproj", "Catalog/Catalog.ReadModel/"]
+COPY ["Catalog/Catalog.WebApi/Catalog.WebApi.csproj", "Catalog/Catalog.WebApi/"]
+COPY ["Shared/Core/Core.csproj", "Shared/Core/"]
+COPY ["Shared/Cqrs/Cqrs.csproj", "Shared/Cqrs/"]
+COPY ["Shared/DataAccessObject/DataAccessObject.csproj", "Shared/DataAccessObject/"]
+COPY ["Shared/Depedencies/Depedencies.csproj", "Shared/Depedencies/"]
+COPY ["Shared/DomainModel/DomainModel.csproj", "Shared/DomainModel/"]
+COPY ["Shared/EntityFramework/EntityFramework.csproj", "Shared/EntityFramework/"]
+COPY ["Shared/Logging/Logging.csproj", "Shared/Logging/"]
+COPY ["Shared/Repository/Repository.csproj", "Shared/Repository/"]
+COPY ["Shared/Web.Cqrs/Web.Cqrs.csproj", "Shared/Web.Cqrs/"]
+COPY ["Shared/Web/Web.csproj", "Shared/Web/"]
+
+RUN dotnet restore "Catalog/Catalog.WebApi/Catalog.WebApi.csproj"
+COPY . .
+WORKDIR "/src/Catalog/Catalog.WebApi"
+RUN dotnet build --no-restore "Catalog.WebApi.csproj" -c $BUILD_CONFIGURATION
+
+RUN echo "exec dotnet run --no-build --no-launch-profile -c $BUILD_CONFIGURATION --" > /entrypoint.sh
+
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]

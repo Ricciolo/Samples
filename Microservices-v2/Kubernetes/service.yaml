@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontdoor
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: frontdoor
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: catalog

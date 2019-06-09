@@ -30,6 +30,13 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/values",
       "environmentVariables": {},
       "httpPort": 10000
+    },
+    "Azure Dev Spaces": {
+      "commandName": "AzureDevSpaces",
+      "launchBrowser": true,
+      "resourceGroup": "plansoft",
+      "aksName": "plansoft",
+      "subscriptionId": "3cc10a93-788e-4cbc-96a2-7b6f1bbfdca3"
     }
   }
 }

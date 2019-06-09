@@ -3,6 +3,7 @@ using System.Globalization;
 using Muuvis.Web;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Muuvis.Depedencies;
 
 namespace Muuvis.Catalog.WebApi
@@ -20,6 +21,14 @@ namespace Muuvis.Catalog.WebApi
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((c, b) =>
+                {
+                    // Support devspaces env
+                    if (c.HostingEnvironment.IsDevelopment() && c.HostingEnvironment.IsUnix())
+                    {
+                        b.AddJsonFile("appsettings.DevSpaces.json", false);
+                    }
+                })
                 .UseSerilogWithConfiguration()
                 .UseStartup<Startup>();
         }
