@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Muuvis.Taste.Cqrs.Handlers</AssemblyName>
+    <RootNamespace>Muuvis.Taste.Cqrs.Handlers</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ParameterGroupHandler.cs" />
+    <Compile Remove="ParameterHandler.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
+    <PackageReference Include="Rebus" Version="5.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Core\Core.csproj" />
+    <ProjectReference Include="..\..\Shared\Cqrs\Cqrs.csproj" />
+    <ProjectReference Include="..\..\Shared\DataAccessObject\DataAccessObject.csproj" />
+    <ProjectReference Include="..\..\Shared\Repository\Repository.csproj" />
+    <ProjectReference Include="..\Taste.Cqrs\Taste.Cqrs.csproj" />
+    <ProjectReference Include="..\Taste.DomainModel\Taste.DomainModel.csproj" />
+    <ProjectReference Include="..\Taste.ReadModel\Taste.ReadModel.csproj" />
+  </ItemGroup>
+
+</Project>

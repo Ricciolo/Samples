@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Muuvis.Taste.Cqrs</AssemblyName>
+    <RootNamespace>Muuvis.Taste.Cqrs</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commands\ParameterGroup\**" />
+    <Compile Remove="Commands\Parameter\**" />
+    <EmbeddedResource Remove="Commands\ParameterGroup\**" />
+    <EmbeddedResource Remove="Commands\Parameter\**" />
+    <None Remove="Commands\ParameterGroup\**" />
+    <None Remove="Commands\Parameter\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Cqrs\Cqrs.csproj" />
+    <ProjectReference Include="..\..\Shared\DomainModel\DomainModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="NETStandard.Library" Version="2.0.1" />
+  </ItemGroup>
+
+</Project>

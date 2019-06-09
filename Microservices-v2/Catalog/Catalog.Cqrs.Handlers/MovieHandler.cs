@@ -21,26 +21,26 @@ namespace Muuvis.Catalog.Cqrs.Handlers
     {
         private readonly IBus _bus;
         private readonly ILogger<MovieHandler> _logger;
-        private readonly IDataAccessObject<MovieRead> _modelDataAccessObject;
-        private readonly IRepository<Movie> _modelRepository;
+        private readonly IDataAccessObject<MovieRead> _movieDataAccessObject;
+        private readonly IRepository<Movie> _movieRepository;
 
         public MovieHandler(
             ILogger<MovieHandler> logger,
             IBus bus,
-            IRepository<Movie> modelRepository,
-            IDataAccessObject<MovieRead> modelDataAccessObject
+            IRepository<Movie> movieRepository,
+            IDataAccessObject<MovieRead> movieDataAccessObject
         )
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _bus = bus ?? throw new ArgumentNullException(nameof(bus));
-            _modelRepository = modelRepository ?? throw new ArgumentNullException(nameof(modelRepository));
-            _modelDataAccessObject = modelDataAccessObject;
+            _movieRepository = movieRepository ?? throw new ArgumentNullException(nameof(movieRepository));
+            _movieDataAccessObject = movieDataAccessObject;
         }
 
         public async Task Handle(AddOrUpdateMovieCommand command)
         {
             // Validate title uniqueness
-            if (await _modelDataAccessObject.AnyAsync(m => m.Title == command.OriginalTitle))
+            if (await _movieDataAccessObject.AnyAsync(m => m.Title == command.OriginalTitle))
             {
                 _logger.LogError("A movie with the title {title} already exists", command.OriginalTitle);
 
@@ -58,11 +58,11 @@ namespace Muuvis.Catalog.Cqrs.Handlers
                 entity.Translation.Add(pair.Key, pair.Value);
             }
 
-            bool exists = await _modelDataAccessObject.AnyAsync(e => e.Id == command.Id);
+            bool exists = await _movieDataAccessObject.AnyAsync(e => e.Id == command.Id);
 
             if (exists)
             {
-                await _modelRepository.UpdateAsync(entity);
+                await _movieRepository.UpdateAsync(entity);
 
                 _logger.LogInformation("Movie {value} updated", command.Id);
 
@@ -72,7 +72,7 @@ namespace Muuvis.Catalog.Cqrs.Handlers
             {
                 _logger.LogInformation("Movie {value} added", command.Id);
 
-                await _modelRepository.AddAsync(entity);
+                await _movieRepository.AddAsync(entity);
 
                 await _bus.Publish(command.CreateAddedEvent());
             }
@@ -80,7 +80,7 @@ namespace Muuvis.Catalog.Cqrs.Handlers
 
         public async Task Handle(DeleteMovieCommand command)
         {
-            Movie entity = await _modelRepository.GetAsync(command.Id);
+            Movie entity = await _movieRepository.GetAsync(command.Id);
 
             if (entity == null || entity.IsDeleted)
             {
@@ -90,7 +90,7 @@ namespace Muuvis.Catalog.Cqrs.Handlers
             {
                 entity.IsDeleted = true;
 
-                await _modelRepository.UpdateAsync(entity);
+                await _movieRepository.UpdateAsync(entity);
 
                 await _bus.Publish(command.CreateUpdatedEvent());
 
