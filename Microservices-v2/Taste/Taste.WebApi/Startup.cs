@@ -39,6 +39,7 @@ namespace Muuvis.Taste.WebApi
             {
                 b.AddTasteCommandsRoute();
                 b.AddTasteHandlers();
+                b.AddTasteSubscriptions();
                 if (!HostingEnvironment.IsUnix())
                 {
                     b.UseTasteInMemoryQueue();

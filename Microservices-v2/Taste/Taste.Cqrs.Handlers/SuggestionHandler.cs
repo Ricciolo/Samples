@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Muuvis.Catalog.Cqrs;
 using Muuvis.Cqrs.Messaging.Events;
 using Muuvis.DataAccessObject;
 using Muuvis.DomainModel;
@@ -13,7 +14,10 @@ using Rebus.Handlers;
 
 namespace Muuvis.Taste.Cqrs.Handlers
 {
-    internal class SuggestionHandler : IHandleMessages<AddOrUpdateSuggestionCommand>
+    internal class SuggestionHandler :
+        IHandleMessages<AddOrUpdateSuggestionCommand>,
+        IHandleMessages<EntityAddedEvent<MovieType>>,
+        IHandleMessages<EvaluateSuggestionCommand>
     {
         private readonly IBus _bus;
         private readonly ILogger<SuggestionHandler> _logger;
@@ -60,6 +64,31 @@ namespace Muuvis.Taste.Cqrs.Handlers
             }
         }
 
-    
+        public Task Handle(EntityAddedEvent<MovieType> message)
+        {
+            _logger.LogInformation("New movie {movieId} added", message.Id);
+
+            return _bus.Send(new EvaluateSuggestionCommand(message.Id));
+        }
+
+        public async Task Handle(EvaluateSuggestionCommand message)
+        {
+            // Idempotency
+            if (await _suggestionsDataAccessObject.AnyAsync(m => m.MovieId == message.MovieId)) return;
+
+            _logger.LogInformation("Evaluating suggestion for {movieId}", message.MovieId);
+
+            //if (Environment.TickCount % 2d == 0d)
+            //{
+            //    throw new Exception("Random error");
+            //}
+
+            await _suggestionRepository.AddAsync(new Suggestion(IdGenerator.New(), message.MovieId)
+            {
+                Affinity = (float)Math.Round(new Random(Environment.TickCount).NextDouble(), 2)
+            });
+
+            message.CreateCompletedEvent();
+        }
     }
 }

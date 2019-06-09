@@ -16,6 +16,21 @@ services:
       - bus
       - mssql
 
+  taste:
+    image: plansoft.azurecr.io/taste
+    build:
+      context: .
+      dockerfile: Taste/Taste.WebApi/Dockerfile
+    environment:
+      basePath: /taste
+      Cqrs__RabbitMqConnectionString: "amqp://guest:guest@bus:5672"
+      Cqrs__SqlServerConnectionString: "Data Source=mssql;Initial Catalog=Taste;user=sa;password=P@assword;MultipleActiveResultSets=True"
+      ConnectionStrings__SqlServer: "Data Source=mssql;Initial Catalog=Taste;user=sa;password=P@assword;MultipleActiveResultSets=True"
+    restart: always
+    depends_on:
+      - bus
+      - mssql
+
   mssql:
     image: "microsoft/mssql-server-linux"
     environment:

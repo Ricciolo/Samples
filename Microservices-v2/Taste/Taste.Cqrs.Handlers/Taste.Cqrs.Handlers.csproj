@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Catalog\Catalog.Cqrs\Catalog.Cqrs.csproj" />
     <ProjectReference Include="..\..\Shared\Core\Core.csproj" />
     <ProjectReference Include="..\..\Shared\Cqrs\Cqrs.csproj" />
     <ProjectReference Include="..\..\Shared\DataAccessObject\DataAccessObject.csproj" />

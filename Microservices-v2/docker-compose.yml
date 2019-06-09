@@ -12,6 +12,17 @@ services:
       - bus
       - mssql
 
+  taste:
+    image: ${DOCKER_REGISTRY-}tastewebapi
+    build:
+      context: .
+      dockerfile: Taste/Taste.WebApi/Dockerfile
+    environment:
+      basePath: /taste
+    depends_on:
+      - bus
+      - mssql
+
   mssql:
     image: "microsoft/mssql-server-linux"
     environment:
