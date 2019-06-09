@@ -12,7 +12,7 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  taste.webapi:
+  taste:
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
       Cqrs__RabbitMqConnectionString: "amqp://guest:guest@bus:5672"

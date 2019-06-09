@@ -22,7 +22,7 @@ namespace Muuvis.Taste.WebApi
                 .ConfigureAppConfiguration((c, b) =>
                 {
                     // Support devspaces env
-                    if (c.HostingEnvironment.IsDevelopment() && c.HostingEnvironment.IsUnix())
+                    if (c.HostingEnvironment.IsDevelopment() && c.HostingEnvironment.IsKubernetes())
                     {
                         b.AddJsonFile("appsettings.DevSpaces.json", false);
                     }

@@ -19,5 +19,10 @@ namespace Microsoft.AspNetCore.Hosting
                 throw new ArgumentNullException(nameof(hostingEnvironment));
             return Environment.OSVersion.Platform == PlatformID.Unix;
         }
+
+        public static bool IsKubernetes(this IHostingEnvironment hostingEnvironment)
+        {
+            return !String.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("KUBERNETES_SERVICE_PORT"));
+        }
     }
 }

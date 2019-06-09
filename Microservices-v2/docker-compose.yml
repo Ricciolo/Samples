@@ -13,7 +13,7 @@ services:
       - mssql
 
   taste:
-    image: ${DOCKER_REGISTRY-}tastewebapi
+    image: ${DOCKER_REGISTRY-}taste
     build:
       context: .
       dockerfile: Taste/Taste.WebApi/Dockerfile

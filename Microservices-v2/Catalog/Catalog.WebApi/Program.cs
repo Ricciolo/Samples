@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using Muuvis.Web;
 using Microsoft.AspNetCore;
@@ -24,7 +25,7 @@ namespace Muuvis.Catalog.WebApi
                 .ConfigureAppConfiguration((c, b) =>
                 {
                     // Support devspaces env
-                    if (c.HostingEnvironment.IsDevelopment() && c.HostingEnvironment.IsUnix())
+                    if (c.HostingEnvironment.IsDevelopment() && c.HostingEnvironment.IsKubernetes())
                     {
                         b.AddJsonFile("appsettings.DevSpaces.json", false);
                     }
