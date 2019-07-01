@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿//#nullable disable
 
 using System;
 using System.Collections.Generic;
@@ -44,7 +44,7 @@ namespace Demo
 
         public decimal? UnitPrice { get; set; }
 
-        public string? GetFormattedAmount()
+        public string GetFormattedAmount()
         {
             if (!UnitPrice.HasValue) return null;
 
