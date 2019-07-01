@@ -37,6 +37,30 @@ namespace Demo
             Range r2 = ..2;
             // Da 2 fino alla fine
             Range r3 = 2..;
+
+            // Classe personalizzata
+            var set = new MySet();
+            var subset = set[1..3];
+        }
+    }
+
+    public class MySet
+    {
+        public MySet()
+        {
+
+        }
+
+        public MySet(int size)
+        {
+
+        }
+
+        public int Length => 10;
+
+        public MySet Slice(int start, int end)
+        {
+            return new MySet(end - start);
         }
     }
 }
