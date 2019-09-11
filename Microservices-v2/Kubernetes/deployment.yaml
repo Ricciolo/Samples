@@ -27,6 +27,32 @@ spec:
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
+  name: taste
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: taste
+    spec:
+      containers:
+      - name: taste
+        image: plansoft.azurecr.io/taste
+        ports:
+        - containerPort: 80
+        env:
+        - name: basePath
+          value: "/taste"
+        - name: Cqrs__AzureServiceBusConnectionString
+          value: "Endpoint=sb://plansoft.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=8yTgS9nyoXPXUqQ32/kiExhWXbcr2aumvwphpWw3TaI="
+        - name: Cqrs__SqlServerConnectionString
+          value: "Server=tcp:plansoft.database.windows.net,1433;Initial Catalog=Plansoft-taste;Persist Security Info=False;User ID=plansoftsa;Password=P@ssword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        - name: ConnectionStrings__SqlServer
+          value: "Server=tcp:plansoft.database.windows.net,1433;Initial Catalog=Plansoft-taste;Persist Security Info=False;User ID=plansoftsa;Password=P@ssword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
   name: frontdoor
 spec:
   replicas: 1

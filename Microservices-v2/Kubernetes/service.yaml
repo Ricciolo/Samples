@@ -18,3 +18,13 @@ spec:
   - port: 80
   selector:
     app: catalog
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taste
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: taste
