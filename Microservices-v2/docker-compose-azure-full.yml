@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   catalog:
-    image: plansoft.azurecr.io/catalog
+    image: ${site}.azurecr.io/catalog
     build:
       context: .
       dockerfile: Catalog/Catalog.WebApi/Dockerfile
@@ -17,7 +17,7 @@ services:
       - mssql
 
   taste:
-    image: plansoft.azurecr.io/taste
+    image: ${site}.azurecr.io/taste
     build:
       context: .
       dockerfile: Taste/Taste.WebApi/Dockerfile
@@ -51,7 +51,7 @@ services:
     restart: always
 
   frontdoor:
-    image: plansoft.azurecr.io/frontdoor
+    image: ${site}.azurecr.io/frontdoor
     build:
       context: .
       dockerfile: FrontDoor/Dockerfile
