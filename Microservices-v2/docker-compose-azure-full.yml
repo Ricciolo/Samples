@@ -15,6 +15,8 @@ services:
     depends_on:
       - bus
       - mssql
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/ContainerLogs:/var/log/containers
 
   taste:
     image: ${site}.azurecr.io/taste
@@ -30,6 +32,8 @@ services:
     depends_on:
       - bus
       - mssql
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/ContainerLogs:/var/log/containers
 
   mssql:
     image: "microsoft/mssql-server-linux"

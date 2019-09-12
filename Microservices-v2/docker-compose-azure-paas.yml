@@ -12,6 +12,8 @@ services:
       Cqrs__SqlServerConnectionString: "${SQLCATALOG}"
       ConnectionStrings__SqlServer: "${SQLCATALOG}"
     restart: always
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/ContainerLogs:/var/log/containers
 
   taste:
     image: ${SITE}.azurecr.io/taste:${TAG}
@@ -24,6 +26,8 @@ services:
       Cqrs__SqlServerConnectionString: "${SQLTASTE}"
       ConnectionStrings__SqlServer: "${SQLTASTE}"
     restart: always
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/ContainerLogs:/var/log/containers
 
   frontdoor:
     image: ${SITE}.azurecr.io/frontdoor:${TAG}

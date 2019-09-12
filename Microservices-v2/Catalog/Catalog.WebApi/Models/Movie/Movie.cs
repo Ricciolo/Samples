@@ -15,7 +15,6 @@ namespace Muuvis.Catalog.WebApi.Models.Movie
         [StringLength(255)]
         public string OriginalTitle { get; set; }
 
-        [StringLength(6)]
         public CultureInfo OriginalCulture { get; set; }
 
         public Dictionary<CultureInfo, string> Translation { get; set; }
