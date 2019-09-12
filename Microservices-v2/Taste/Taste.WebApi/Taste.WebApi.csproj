@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Cqrs\Cqrs.csproj" />
+    <ProjectReference Include="..\..\Shared\Http\Http.csproj" />
     <ProjectReference Include="..\..\Shared\Web.Cqrs\Web.Cqrs.csproj" />
     <ProjectReference Include="..\..\Shared\Web\Web.csproj" />
     <ProjectReference Include="..\Taste.Cqrs.Handlers\Taste.Cqrs.Handlers.csproj" />

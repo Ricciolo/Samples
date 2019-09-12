@@ -412,8 +412,6 @@
           },
           "originalCulture": {
             "type": "string",
-            "maxLength": 6,
-            "minLength": 0,
             "nullable": true
           },
           "translation": {

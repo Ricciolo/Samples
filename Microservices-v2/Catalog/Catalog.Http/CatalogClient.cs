@@ -690,7 +690,6 @@ namespace Muuvis.Catalog.Http
         public string OriginalTitle { get; set; }
     
         [Newtonsoft.Json.JsonProperty("originalCulture", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.StringLength(6)]
         public string OriginalCulture { get; set; }
     
         [Newtonsoft.Json.JsonProperty("translation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]

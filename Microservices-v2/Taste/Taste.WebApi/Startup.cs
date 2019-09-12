@@ -70,6 +70,7 @@ namespace Muuvis.Taste.WebApi
             {
                 s.Title = GetType().Assembly.GetName().Name;
                 s.Version = "1.0";
+                s.AddODataQueryOptions();
             });
 
             services.AddCors(o => o.AddDefaultPolicy(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
