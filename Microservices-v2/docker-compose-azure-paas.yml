@@ -13,7 +13,7 @@ services:
       ConnectionStrings__SqlServer: "${SQLCATALOG}"
     restart: always
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/ContainerLogs:/var/log/containers
+      - ${LOGS}:/var/log/containers
 
   taste:
     image: ${SITE}.azurecr.io/taste:${TAG}
@@ -27,7 +27,7 @@ services:
       ConnectionStrings__SqlServer: "${SQLTASTE}"
     restart: always
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/ContainerLogs:/var/log/containers
+      - ${LOGS}:/var/log/containers
 
   frontdoor:
     image: ${SITE}.azurecr.io/frontdoor:${TAG}
