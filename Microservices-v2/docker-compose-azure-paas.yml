@@ -8,6 +8,9 @@ services:
       dockerfile: Catalog/Catalog.WebApi/Dockerfile
     environment:
       basePath: /catalog
+      Cqrs__AzureServiceBusConnectionString: "${BUS}"
+      Cqrs__SqlServerConnectionString: "${SQLCATALOG}"
+      ConnectionStrings__SqlServer: "${SQLCATALOG}"
     restart: always
 
   taste:
@@ -17,6 +20,9 @@ services:
       dockerfile: Taste/Taste.WebApi/Dockerfile
     environment:
       basePath: /taste
+      Cqrs__AzureServiceBusConnectionString: "${BUS}"
+      Cqrs__SqlServerConnectionString: "${SQLTASTE}"
+      ConnectionStrings__SqlServer: "${SQLTASTE}"
     restart: always
 
   frontdoor:
