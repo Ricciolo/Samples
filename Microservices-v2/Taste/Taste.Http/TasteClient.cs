@@ -40,18 +40,49 @@ namespace Muuvis.Taste.Http
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
     
+        /// <param name="skip">Skip items</param>
+        /// <param name="top">Top items</param>
+        /// <param name="orderby">Order items</param>
+        /// <param name="select">Select items</param>
+        /// <param name="where">Filter items</param>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<GetApiModel>> GetAllAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<GetApiModel>> GetAllAsync(int? skip, int? top, string orderby, string select, string where)
         {
-            return GetAllAsync(System.Threading.CancellationToken.None);
+            return GetAllAsync(skip, top, orderby, select, where, System.Threading.CancellationToken.None);
         }
     
+        /// <param name="skip">Skip items</param>
+        /// <param name="top">Top items</param>
+        /// <param name="orderby">Order items</param>
+        /// <param name="select">Select items</param>
+        /// <param name="where">Filter items</param>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<GetApiModel>> GetAllAsync(System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<GetApiModel>> GetAllAsync(int? skip, int? top, string orderby, string select, string where, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/v1/Suggestion");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/v1/Suggestion?");
+            if (skip != null) 
+            {
+                urlBuilder_.Append("$skip=").Append(System.Uri.EscapeDataString(ConvertToString(skip, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (top != null) 
+            {
+                urlBuilder_.Append("$top=").Append(System.Uri.EscapeDataString(ConvertToString(top, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (orderby != null) 
+            {
+                urlBuilder_.Append("$orderby=").Append(System.Uri.EscapeDataString(ConvertToString(orderby, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (select != null) 
+            {
+                urlBuilder_.Append("$select=").Append(System.Uri.EscapeDataString(ConvertToString(select, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (where != null) 
+            {
+                urlBuilder_.Append("$where=").Append(System.Uri.EscapeDataString(ConvertToString(where, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            urlBuilder_.Length--;
     
             var client_ = _httpClient;
             try

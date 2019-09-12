@@ -12,6 +12,53 @@
           "Suggestion"
         ],
         "operationId": "Suggestion_GetAll",
+        "parameters": [
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skip items",
+            "schema": {
+              "type": "integer"
+            },
+            "x-position": 0
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Top items",
+            "schema": {
+              "type": "integer"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select items",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 3
+          },
+          {
+            "name": "$where",
+            "in": "query",
+            "description": "Filter items",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 4
+          }
+        ],
         "responses": {
           "200": {
             "description": "",

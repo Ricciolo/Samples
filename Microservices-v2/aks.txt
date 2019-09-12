@@ -1,0 +1,14 @@
+az login
+az aks get-credentials --name test --resource-group test
+
+kubectl get nodes
+kubectl get pods
+
+az aks browse --resource-group test --name test
+
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+kubectl get service frontdoor --watch
+
+kubectl scale --replicas=2 deployment/catalog

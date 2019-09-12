@@ -6,6 +6,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
+COPY ["Shared/Http/Http.csproj", "Shared/Http/"]
 COPY ["Catalog/Catalog.WebApi/Catalog.WebApi.csproj", "Catalog/Catalog.WebApi/"]
 COPY ["Shared/Web.Cqrs/Web.Cqrs.csproj", "Shared/Web.Cqrs/"]
 COPY ["Shared/Web/Web.csproj", "Shared/Web/"]

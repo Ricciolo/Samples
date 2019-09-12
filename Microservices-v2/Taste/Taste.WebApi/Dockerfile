@@ -23,6 +23,7 @@ COPY ["Taste/Taste.DomainModel/Taste.DomainModel.csproj", "Taste/Taste.DomainMod
 COPY ["Shared/Repository/Repository.csproj", "Shared/Repository/"]
 COPY ["Taste/Taste.EntityFramework/Taste.EntityFramework.csproj", "Taste/Taste.EntityFramework/"]
 COPY ["Shared/EntityFramework/EntityFramework.csproj", "Shared/EntityFramework/"]
+COPY ["Shared/Http/Http.csproj", "Shared/Http/"]
 RUN dotnet restore "Taste/Taste.WebApi/Taste.WebApi.csproj"
 COPY . .
 WORKDIR "/src/Taste/Taste.WebApi"

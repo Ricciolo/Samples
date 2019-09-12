@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   catalog:
-    image: ${site}.azurecr.io/catalog
+    image: ${SITE}.azurecr.io/catalog:${TAG}
     build:
       context: .
       dockerfile: Catalog/Catalog.WebApi/Dockerfile
@@ -19,7 +19,7 @@ services:
       - ${WEBAPP_STORAGE_HOME}/ContainerLogs:/var/log/containers
 
   taste:
-    image: ${site}.azurecr.io/taste
+    image: ${SITE}.azurecr.io/taste:${TAG}
     build:
       context: .
       dockerfile: Taste/Taste.WebApi/Dockerfile
@@ -55,7 +55,7 @@ services:
     restart: always
 
   frontdoor:
-    image: ${site}.azurecr.io/frontdoor
+    image: ${SITE}.azurecr.io/frontdoor:${TAG}
     build:
       context: .
       dockerfile: FrontDoor/Dockerfile
