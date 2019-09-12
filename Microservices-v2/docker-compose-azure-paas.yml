@@ -2,34 +2,31 @@ version: '3.4'
 
 services:
   catalog:
-    image: ${site}.azurecr.io/catalog
+    image: ${SITE}.azurecr.io/catalog:${TAG}
     build:
       context: .
       dockerfile: Catalog/Catalog.WebApi/Dockerfile
     environment:
       basePath: /catalog
-      Cqrs__AzureServiceBusConnectionString: "Endpoint=sb://${site}.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=8yTgS9nyoXPXUqQ32/kiExhWXbcr2aumvwphpWw3TaI="
-      Cqrs__SqlServerConnectionString: "Server=tcp:${site}.database.windows.net,1433;Initial Catalog=catalog;Persist Security Info=False;User ID=${site}sa;Password=P@ssword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-      ConnectionStrings__SqlServer: "Server=tcp:${site}.database.windows.net,1433;Initial Catalog=catalog;Persist Security Info=False;User ID=${site}sa;Password=P@ssword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
     restart: always
 
   taste:
-    image: ${site}.azurecr.io/taste
+    image: ${SITE}.azurecr.io/taste:${TAG}
     build:
       context: .
       dockerfile: Taste/Taste.WebApi/Dockerfile
     environment:
       basePath: /taste
-      Cqrs__AzureServiceBusConnectionString: "Endpoint=sb://${site}.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=8yTgS9nyoXPXUqQ32/kiExhWXbcr2aumvwphpWw3TaI="
-      Cqrs__SqlServerConnectionString: "Server=tcp:${site}.database.windows.net,1433;Initial Catalog=taste;Persist Security Info=False;User ID=${site}sa;Password=P@ssword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-      ConnectionStrings__SqlServer: "Server=tcp:${site}.database.windows.net,1433;Initial Catalog=taste;Persist Security Info=False;User ID=${site}sa;Password=P@ssword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
     restart: always
 
   frontdoor:
-    image: ${site}.azurecr.io/frontdoor
+    image: ${SITE}.azurecr.io/frontdoor:${TAG}
     build:
       context: .
       dockerfile: FrontDoor/Dockerfile
     restart: always
     ports:
       - "80:80"
+    depends_on:
+      - taste
+      - catalog
