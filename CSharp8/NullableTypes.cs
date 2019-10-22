@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Demo
@@ -18,6 +19,19 @@ namespace Demo
             var item = new OrderItem(12);
             order.Items.Add(item);
             Console.WriteLine(item.GetFormattedAmount());
+
+            // Provo ad ottenere la stringa formattata
+            if (item.TryGetFormattedAmount(out string formatted))
+            {
+                Console.WriteLine(formatted.ToUpper());
+            }
+
+            // Accesso a dizionario
+            var sampleDictionary = new Dictionary<string, string>();
+            if (sampleDictionary.TryGetValue("test", out string n))
+            {
+
+            }
 
             string type = DemoLibrary.Algorithm.Type;
             
@@ -50,6 +64,16 @@ namespace Demo
 
             return (UnitPrice.Value * Quantity).ToString("C");
         }
+
+        public bool TryGetFormattedAmount(out string value)
+        {
+            value = null;
+            if (!UnitPrice.HasValue) return false;
+
+            value = (UnitPrice.Value * Quantity).ToString("C");
+
+            return true;
+        }
     }
 
 
@@ -77,6 +101,16 @@ namespace Demo
             if (!UnitPrice.HasValue) return null;
 
             return (UnitPrice.Value * Quantity).ToString("C");
+        }
+
+        public bool TryGetFormattedAmount([NotNullWhen(true)]out string? value)
+        {
+            value = null;
+            if (!UnitPrice.HasValue) return false;
+
+            value = (UnitPrice.Value * Quantity).ToString("C");
+
+            return true;
         }
     }
 
