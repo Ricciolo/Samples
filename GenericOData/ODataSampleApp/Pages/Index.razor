@@ -1,0 +1,16 @@
+﻿@page "/"
+
+<h1>@title</h1>
+
+@if (students != null)
+{
+    @count
+<ul>
+    @foreach (var student in students)
+    {
+        <li>@student.Name</li>
+    }    
+</ul>
+}
+
+<button @onclick="Insert" class="btn btn-primary">Insert</button>
