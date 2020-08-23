@@ -65,7 +65,8 @@ namespace ODataSampleApi
         {
             var odataBuilder = new ODataConventionModelBuilder();
             odataBuilder.EntitySet<Student>("Students");
-            
+            odataBuilder.EntitySet<Teacher>("Teachers");
+
             return odataBuilder.GetEdmModel();
         }
     }

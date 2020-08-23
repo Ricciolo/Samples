@@ -23,7 +23,7 @@ namespace Demo
 
         public string Description
         {
-            get => _description ?? (_description = String.Empty);
+            get => _description ??= String.Empty;
             set => _name = value;
         }
 

@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿//#nullable disable
 
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace Demo
             // Aggiungo una riga
             var item = new OrderItem(12);
             order.Items.Add(item);
-            Console.WriteLine(item.GetFormattedAmount());
+            Console.WriteLine(item.GetFormattedAmount()?.ToString());
 
             // Provo ad ottenere la stringa formattata
             if (item.TryGetFormattedAmount(out string formatted))
@@ -28,9 +28,9 @@ namespace Demo
 
             // Accesso a dizionario
             var sampleDictionary = new Dictionary<string, string>();
-            if (sampleDictionary.TryGetValue("test", out string n))
+            if (sampleDictionary.TryGetValue("test", out string? n))
             {
-
+                n.ToString();
             }
 
             string type = DemoLibrary.Algorithm.Type;
@@ -42,9 +42,9 @@ namespace Demo
 
     public class Order
     {
-        public string Id { get; set; }
+        public string Id { get; set; } = String.Empty;
 
-        public List<OrderItem> Items { get; set; }
+        public List<OrderItem> Items { get; } = new List<OrderItem>();
     }
 
     public class OrderItem
@@ -58,7 +58,7 @@ namespace Demo
 
         public decimal? UnitPrice { get; set; }
 
-        public string GetFormattedAmount()
+        public string? GetFormattedAmount()
         {
             if (!UnitPrice.HasValue) return null;
 

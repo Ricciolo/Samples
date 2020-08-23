@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="3.1.0" />
+    <PackageReference Include="WebWindow.Blazor" Version="0.1.0-20200807.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\BlazorSample.App.Client\wwwroot\**" LinkBase="wwwroot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorSample.App.Client\BlazorSample.App.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="..\BlazorSample.App.Client\wwwroot\appsettings.json" Link="appsettings.json" />
+  </ItemGroup>
+
+</Project>

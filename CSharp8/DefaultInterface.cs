@@ -28,7 +28,17 @@ namespace Demo
         public static void Log(this ILogger logger, Exception ex) => logger.Log(LogLevel.Error, ex.ToString());
     }
 
+    public class Logger2 : ILogger2
+    {
+        public void Log(LogLevel level, string message)
+        {
+            throw new NotImplementedException();
+        }
 
+        void ILogger2.Log(Exception ex)
+        {
+        }
+    }
 
 
     public interface ILogger2

@@ -29,6 +29,7 @@ namespace ODataSampleClient
 
             var settings = new ODataClientSettings(httpClient, new Uri("/odata", UriKind.Relative));
             var client = new ODataClient(settings);
+
             return client;
         }
 
