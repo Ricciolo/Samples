@@ -8,7 +8,7 @@ namespace CSharp9
 {
     public class Order
     {
-        private Person _person = new("Cristian", "Civera");
+        private Person _person = new();
 
         private List<string> Items { get; } = new();
 
@@ -20,5 +20,10 @@ namespace CSharp9
         private void Init(Address address)
         {
         }
+    }
+
+    public class Address
+    {
+
     }
 }

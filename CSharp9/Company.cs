@@ -8,16 +8,16 @@ namespace CSharp9
 {
     public record Company : Person
     {
-        public Company(string first, string last, string vat) : base(first, last)
-        {
-            Vat = vat;
-        }
+        //public Company(string first, string last, string vat) : base(first, last)
+        //{
+        //    Vat = vat;
+        //}
 
-        public string Vat { get; }
+        public string Vat { get; init; }
 
-        public override Person Validate()
-        {
-            return this;
-        }
+        //public override Person Validate()
+        //{
+        //    return this;
+        //}
     }
 }
