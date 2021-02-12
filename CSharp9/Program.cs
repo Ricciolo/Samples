@@ -12,7 +12,10 @@ using System.Threading.Tasks;
 // 08. pattern matching: underscore, property matching, logical operator, is/not, minor/major
 // 09. target-typed new expression
 // 10. covariant returns
-
+// 11. Attributes on local functions
+// 12. Module initializer
+// 13. Static anonymous function
+// 14. Discard su lambda
 
 var p1 = new Person { FirstName = "Cristian", LastName = "Civera" };
 var p2 = new Company { FirstName = "Cristian", LastName = "Civera", Vat = "123" };
