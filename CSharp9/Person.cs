@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CSharp9
 {
-    //public record Person(string FirstName, string LastName);
+    //public record Person2(string FirstName, string LastName);
 
     public record Person
     {

@@ -22,6 +22,8 @@ var p2 = new Company { FirstName = "Cristian", LastName = "Civera", Vat = "123" 
 //var p1 = new Person("Cristian", "Civera");
 //var p2 = new Company("Cristian", "Civera", "01234");
 
+// (string f, string l) = p1;
+
 Person p4 = new();
 
 var p3 = p1 with { FirstName = "Pippo" };
