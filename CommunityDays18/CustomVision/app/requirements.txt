@@ -2,4 +2,4 @@ tensorflow==1.5.0
 pillow==5.0.0
 numpy==1.14.1
 flask==0.12.2
-flask-cors==3.0.4
+flask-cors==3.0.9
